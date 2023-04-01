@@ -1,0 +1,22 @@
+﻿
+configure_file ("Backgrounds/BackgroundGame.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Image/SquareInsideSquare.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Backgrounds/MenuBackground.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Backgrounds/Information.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Backgrounds/Quit.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Backgrounds/Start.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Image/Loading.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Image/Wall.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Image/Clock.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Image/Player.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Image/Goblet.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Image/Door.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Image/Empty.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Image/ComputerPlayer.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Board.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+
+
+configure_file ("Font/TimeFont.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Font/Candy_Pop!-demo-font.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Font/Sharpshooter.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Font/BubbleboddyExtralight-z54X.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
