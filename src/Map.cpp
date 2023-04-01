@@ -18,6 +18,17 @@ void Map::checksCollistion() {
 	checkDisposedObject();
 	checkWheterMakeDFS();
 }
+//--------------getTime--------------------
+int Map::getTime() const {
+	return m_gameTime.getTime();
+}
+//--------------getTime--------------------
+int Map::getGlobletCollected() const {
+
+	Player* player;
+	player = static_cast<Player*>(m_player.get());
+	return player->getGobelt();
+}
 //------------checkWheterMakeDFS-----------
 void Map::checkWheterMakeDFS() {
 
@@ -93,7 +104,8 @@ void Map::drawMap(sf::RenderWindow& window) {
 				m_staticObj[i][j]->draw(window);
 			
 	m_player->draw(window);
-	m_informationBar.drawInformationBar(window, player->getGobelt(), m_gameTime.getTime());
+	m_informationGame.setGobletCollected(this->getGlobletCollected());
+	m_informationGame.setGobletCollected(m_gameTime.getTime());
 }
 //---------------constructor------------------
 Map::Map()

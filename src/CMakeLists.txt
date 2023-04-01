@@ -7,6 +7,11 @@
                                                "Player.cpp"
                                                "Animation.cpp"
                                                "StaticObject.cpp"
+                                               "DataBar.cpp"
+
+                                               "InformationGame.cpp"
+                                               "GobletInformationBar.cpp"
+                                                "TimeInformationBar.cpp"
                                                "Factory.cpp"
                                                "Wall.cpp"
                                                "FactoryObj.cpp"

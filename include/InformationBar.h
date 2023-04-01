@@ -1,25 +1,22 @@
 #pragma
-
+#include "DataBar.h"
 #include "GameTexture.h"
 #include "Const.h"
+#include "InformationGame.h"
 class InformationBar
 {
 public:
 
-
-	InformationBar();
+	InformationBar(InformationGame& informationGame);
 	~InformationBar() = default;
-
-	void drawInformationBar(sf::RenderWindow & , const unsigned&, const int&);
+	
+	void draw(sf::RenderWindow& window);
 private:
 
-	void setSettingOfTime();
-	void updateData(const unsigned& level, const int& time);
-	void setSettingOfGoblet();
-	sf::Sprite m_gobeltltSprite,
-				m_clockSprite;
-	sf::Text m_currentTimeAndTitle[TEXT_AND_DATA];
-	sf::Text m_numberOfGoblet;
+	vector<unique_ptr<DataBar>> m_dataBar;
+
+	//void registerToDataBar(std::unique_ptr<DataBar> dataBar);
+
 
 }; 
 

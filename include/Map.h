@@ -6,6 +6,7 @@
 #include <vector>
 #include "StaticObject.h"
 #include "Factory.h"
+#include "InformationGame.h"
 #include "ControllerObj.h"
 #include "CollisionHandling.h"
 #include "Graph.h"
@@ -18,6 +19,9 @@
 class Map
 {
 public:
+
+	unsigned getGlobletCollected() const;
+	int getTime() const;
 
 	void checkWheterMakeDFS();
 	bool isTimeOver();
@@ -44,7 +48,9 @@ private:
 	void readMapFromFile(const bool);
 	void openFileMap();
 
-	InformationBar m_informationBar;
+	InformationGame m_informationGame;
+	//InformationBar m_informationBar(m_informationGame);
+
 	CollisionHandling m_collisionHandling;
 	Graph m_graph = Graph(WIDTH_OF_MAP * HEIGHT_OF_MAP);
 	unique_ptr<ControllerObj> m_player ;
