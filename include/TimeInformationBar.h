@@ -2,6 +2,7 @@
 #include "Const.h"
 #include "GameFont.h"
 #include "GameTexture.h"
+#include "InformationGame.h"
 
 class TimeInformationBar : public DataBar{
 public:

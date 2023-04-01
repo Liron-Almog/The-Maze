@@ -1,14 +1,15 @@
 #pragma once
-#include "InformationBar.h"
+#include "InformationGame.h"
+#include "Const.h"
 class DataBar
 {
 public:
-	DataBar(InformationGame & informationGame);
+	DataBar(InformationGame& informationGame);
 	~DataBar() = default;
 	virtual void update() = 0;
 	virtual void draw(sf::RenderWindow& window) = 0;
 
-protected :
+protected:
 	InformationGame* m_informationGame;
 private:
 

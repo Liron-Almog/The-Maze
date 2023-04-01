@@ -38,6 +38,7 @@ void Controller::handleEvents(sf::RenderWindow& window) {
             m_map.movePlayer(direction, elapedTime);
         m_map.checksCollistion();
         checkStatusGame(window, level);
+        m_map.UpdateStatusGame();
         drawGame(window);
     
     }

@@ -1,5 +1,5 @@
 #include "TimeInformationBar.h"
-
+#include <iostream>
 TimeInformationBar::TimeInformationBar(InformationGame & informationGame) : DataBar(informationGame)
 {
 	for (int i = 0; i < TEXT_AND_DATA; i++) {
@@ -22,6 +22,7 @@ TimeInformationBar::TimeInformationBar(InformationGame & informationGame) : Data
 }
 
 void TimeInformationBar::update()  {
+	std::cout << "info From Time" <<  &m_informationGame << endl;;
 	m_currentTimeAndTitle[DATA].setString(to_string(m_informationGame->getTime()));
 }
 void TimeInformationBar::draw(sf::RenderWindow& window)  {

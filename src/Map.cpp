@@ -1,9 +1,15 @@
 #include "Map.h"
 #include "Player.h"
+//------------UpdateStatusGame--------------
+void Map::UpdateStatusGame() {
 
+	m_informationGame.setGobletCollected(this->getGlobletCollected());
+	m_informationGame.setGobletCollected(m_gameTime.getTime());
+}
 //------------movePlayer--------------------
 void Map::movePlayer(const sf::Vector2f& direction, const float& elapsedTime) {
 
+	std::cout << "info From Map" << &m_informationGame << endl;
 	m_player->move(direction, elapsedTime);
 }
 
@@ -17,13 +23,14 @@ void Map::checksCollistion() {
 
 	checkDisposedObject();
 	checkWheterMakeDFS();
+	
 }
 //--------------getTime--------------------
 int Map::getTime() const {
 	return m_gameTime.getTime();
 }
 //--------------getTime--------------------
-int Map::getGlobletCollected() const {
+unsigned Map::getGlobletCollected() const {
 
 	Player* player;
 	player = static_cast<Player*>(m_player.get());
@@ -104,8 +111,8 @@ void Map::drawMap(sf::RenderWindow& window) {
 				m_staticObj[i][j]->draw(window);
 			
 	m_player->draw(window);
-	m_informationGame.setGobletCollected(this->getGlobletCollected());
-	m_informationGame.setGobletCollected(m_gameTime.getTime());
+	m_informationBar.draw(window);
+
 }
 //---------------constructor------------------
 Map::Map()

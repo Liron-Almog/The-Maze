@@ -1,20 +1,19 @@
 #include "InformationBar.h"
 
-InformationBar::InformationBar(InformationGame& informationGame)
-{
-	//m_
-		//registerToDataBar(std::unique_ptr<TimeInformationBar>(), informationGame);
-		//registerToDataBar(std::unique_ptr<GobletInformationBar>,informationGame);
-
-}
-
-//void InformationBar::registerToDataBar(std::unique_ptr<DataBar> dataBar, InformationGame& informationGame) {
-//	m_dataBar.push_back(std::move(dataBar));
-//}
 
 
 void InformationBar::draw(sf::RenderWindow& window) {
 
 
+	for (int i = 0; i < m_dataBar.size(); i++) {
+		m_dataBar[i]->update();
+		m_dataBar[i]->draw(window);
+	}
 
 }
+InformationBar::InformationBar(InformationGame & m_informationGame)
+{
+	m_dataBar.push_back(std::make_unique<TimeInformationBar>(m_informationGame));
+	m_dataBar.push_back(std::make_unique<GobletInformationBar>(m_informationGame));
+}
+
