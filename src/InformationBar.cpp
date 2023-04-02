@@ -1,6 +1,5 @@
 #include "InformationBar.h"
-
-
+#include <iostream>
 
 void InformationBar::draw(sf::RenderWindow& window) {
 
@@ -11,8 +10,9 @@ void InformationBar::draw(sf::RenderWindow& window) {
 	}
 
 }
-InformationBar::InformationBar(InformationGame & m_informationGame)
+InformationBar::InformationBar(InformationGame * m_informationGame)
 {
+
 	m_dataBar.push_back(std::make_unique<TimeInformationBar>(m_informationGame));
 	m_dataBar.push_back(std::make_unique<GobletInformationBar>(m_informationGame));
 }

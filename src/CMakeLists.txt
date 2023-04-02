@@ -8,7 +8,6 @@
                                                "Animation.cpp"
                                                "StaticObject.cpp"
                                                "DataBar.cpp"
-
                                                "InformationGame.cpp"
                                                "GobletInformationBar.cpp"
                                                 "TimeInformationBar.cpp"

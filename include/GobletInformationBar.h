@@ -6,7 +6,7 @@
 class GobletInformationBar : public DataBar
 {
 public:
-	GobletInformationBar(InformationGame& informationGame);
+	GobletInformationBar(InformationGame* informationGame);
 	~GobletInformationBar () = default;
 	virtual void update() override;
 	virtual void draw(sf::RenderWindow& window) override;

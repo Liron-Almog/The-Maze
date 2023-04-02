@@ -4,12 +4,11 @@
 void Map::UpdateStatusGame() {
 
 	m_informationGame.setGobletCollected(this->getGlobletCollected());
-	m_informationGame.setGobletCollected(m_gameTime.getTime());
+	m_informationGame.setTime(m_gameTime.getTime());
 }
 //------------movePlayer--------------------
 void Map::movePlayer(const sf::Vector2f& direction, const float& elapsedTime) {
 
-	std::cout << "info From Map" << &m_informationGame << endl;
 	m_player->move(direction, elapsedTime);
 }
 
@@ -120,6 +119,7 @@ Map::Map()
 	m_background.setTexture(*GameTexture::instance().getBackgroundGame());
 	openFileMap();
 	readMapFromFile(true);
+	UpdateStatusGame();
 }
 
 //--------------readMapFromFile----------

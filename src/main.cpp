@@ -12,13 +12,13 @@ int main()
 
 	try {
 		FactoryObj::FactoryObj();//Loads Objs
-		sf::RenderWindow window(sf::VideoMode(1200, 823, 32), "The Maze", sf::Style::Close);
+		sf::RenderWindow window(sf::VideoMode(1200, 800, 32), "The Maze", sf::Style::Close);
 
 		window.setFramerateLimit(FPS);
 		Menu menu(*GameTexture::instance().getBackground(MENU_BACKGROUND));
-		menu.add("Quit", std::make_unique<Quit>(), sf::Vector2i(511, SCREEN_H + -85 - 170));
-		menu.add("Information", std::make_unique<Information>(), sf::Vector2i(398, SCREEN_H + -170 - 170));
-		menu.add("Start", std::make_unique<Start>(), sf::Vector2i(485, SCREEN_H + -255 - 170));
+		menu.add("Quit", std::make_unique<Quit>(), sf::Vector2i(530, SCREEN_H + -85 - 170));
+		menu.add("Information", std::make_unique<Information>(), sf::Vector2i(442, SCREEN_H + -170 - 170));
+		menu.add("Start", std::make_unique<Start>(), sf::Vector2i(515, SCREEN_H + -255 - 170));
 
 		menu.draw(window);
 		menu.activate(window);

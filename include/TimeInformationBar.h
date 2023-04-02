@@ -6,7 +6,7 @@
 
 class TimeInformationBar : public DataBar{
 public:
-	TimeInformationBar(InformationGame& informationGame);
+	TimeInformationBar(InformationGame* informationGame);
 	~TimeInformationBar() = default;
 	virtual void update() override;
 	virtual void draw(sf::RenderWindow& window) override;

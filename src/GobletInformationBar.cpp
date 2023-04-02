@@ -1,9 +1,9 @@
 #include "GobletInformationBar.h"
 
-GobletInformationBar::GobletInformationBar(InformationGame& informationGame) : DataBar(informationGame) {
+GobletInformationBar::GobletInformationBar(InformationGame* informationGame) :DataBar(informationGame) {
 
 	sf::IntRect temp;
-
+	m_informationGame = informationGame;
 	//sets goblet image
 	m_gobeltltSprite.setTexture(*GameTexture::instance().getTexture(GOBLET));
 	m_gobeltltSprite.setScale(0.32, 0.32);

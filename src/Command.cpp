@@ -11,7 +11,7 @@ void Command::setText(const string& name, const sf::Vector2i& pos) {
 Command::Command() {
 	//defult
 	m_text.setColor(sf::Color::White);
-	m_text.setFont(GameFont::instance().getFont(SHARPSHOTER_FONT));
+	m_text.setFont(GameFont::instance().getFont(TITLE_FONT));
 	m_text.setCharacterSize(55);
 	m_text.setOutlineThickness(1);
 	m_text.setOutlineColor(sf::Color::Black);

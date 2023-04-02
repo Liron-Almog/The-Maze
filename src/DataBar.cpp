@@ -1,6 +1,8 @@
 #include "DataBar.h"
-
-DataBar::DataBar(InformationGame& informationGame)
+#include <iostream>
+DataBar::DataBar(InformationGame* informationGame)
 {
-	m_informationGame = &informationGame;
+
+	m_informationGame = informationGame;
+
 }

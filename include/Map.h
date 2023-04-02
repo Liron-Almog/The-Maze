@@ -10,6 +10,7 @@
 #include "ControllerObj.h"
 #include "CollisionHandling.h"
 #include "Graph.h"
+#include <iostream>
 #include "Const.h"
 #include "GameTime.h"
 #include "InformationBar.h"
@@ -19,10 +20,8 @@
 class Map
 {
 public:
-
-	unsigned getGlobletCollected() const;
 	int getTime() const;
-	void UpdateStatusGame();
+	unsigned getGlobletCollected() const;
 	void checkWheterMakeDFS();
 	bool isTimeOver();
 	bool isGameOver() const;
@@ -36,6 +35,7 @@ public:
 	bool isColiistion(const GameObject& ob1, const GameObject& ob2);
 	void insertPlayer(const char&, const sf::Vector2f&, vector<unique_ptr<StaticObject>>&);
 	Map();
+	void UpdateStatusGame();
 	~Map() = default;
 	void drawMap(sf::RenderWindow& window);
 	void movePlayer(const sf::Vector2f& direction, const float& deltaTime);	
@@ -49,7 +49,7 @@ private:
 	void openFileMap();
 
 	InformationGame m_informationGame;
-	InformationBar m_informationBar = InformationBar(m_informationGame);
+	InformationBar m_informationBar = InformationBar(&m_informationGame);
 
 	CollisionHandling m_collisionHandling;
 	Graph m_graph = Graph(WIDTH_OF_MAP * HEIGHT_OF_MAP);

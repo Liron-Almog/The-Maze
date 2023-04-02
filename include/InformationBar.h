@@ -7,7 +7,7 @@
 class InformationBar
 {
 public:
-	InformationBar(InformationGame&);
+	InformationBar(InformationGame*);
 	~InformationBar() = default;
 	void draw(sf::RenderWindow& window);
 private:
