@@ -1,9 +1,9 @@
 #include "Animation.h"
 #include "Const.h"
 #include "GameTexture.h"
-#include "ControllerObj.h"
+#include "MovingObject.h"
 
-class Player : public ControllerObj
+class Player : public MovingObject
 {
 public:
 

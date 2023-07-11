@@ -9,7 +9,7 @@ void Map::UpdateStatusGame() {
 //------------movePlayer--------------------
 void Map::movePlayer(const sf::Vector2f& direction, const float& elapsedTime) {
 
-	m_player->move(direction, elapsedTime);
+	m_player->move(elapsedTime);
 }
 
 //-------------checksCollistion-------------
@@ -223,7 +223,7 @@ void Map::insertPlayer(const char& tile, const sf::Vector2f& pos, vector<unique_
 
 
 	if (isupper(tile)) {//ControllerObj players
-		m_player = (Factory<ControllerObj>::create(tile));
+		m_player = (Factory<MovingObject>::create(tile));
 		m_player->setTilePosition(pos);
 		temp.emplace_back(Factory<StaticObject>::create(' '));
 		temp[temp.size() - 1]->setTilePosition(pos);

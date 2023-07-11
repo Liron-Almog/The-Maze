@@ -4,6 +4,9 @@ GameObject::GameObject()
 {
 
 }
+void GameObject::moveSprite(const sf::Vector2f& dir) {
+	m_sprite.move(dir);
+}
 //---------------draw----------------
 void GameObject::draw(sf::RenderWindow& window) {
 

@@ -20,6 +20,7 @@ void Menu::draw(sf::RenderWindow &window)const {
 
 	window.clear();
 	window.draw(m_background);
+	window.draw(m_title);
 	drawOption(window);
 	window.display();
 }
@@ -47,9 +48,16 @@ bool Menu::performAction(const int & option , sf::RenderWindow& window) const{
 	return true;
 }
 //----------------costructor-----------------
-Menu::Menu(const sf::Texture & BackGround) {
-
+Menu::Menu(const sf::Texture & BackGround, const string title,const sf::Color color) {
+	
+	m_title.setFont(GameFont::instance().getFont(SHARPSHOTER_FONT));
+	m_title.setColor(color);
+	m_title.setString(title);
+	m_title.setCharacterSize(95);
+	m_title.setPosition(SCREEN_W / 2 -430, SCREEN_H / 2 -250 );
 	m_background.setTexture(BackGround);
+	m_title.setOutlineThickness(2.5);
+	m_title.setOutlineColor(sf::Color::Black);
 }
 //The function checks if user pressed on button from menu
 //and then returns the number of button else returns - 1

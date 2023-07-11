@@ -16,9 +16,9 @@
                                                "FactoryObj.cpp"
                                                "Door.cpp"
                                                "CollisionHandling.cpp"
-                                               "ControllerObj.cpp"
+                                               
                                                "GameFont.cpp"
-                                               "UnControllerObj.cpp"
+                                             
                                                "Graph.cpp"
                                                "Information.cpp"
                                                "Quit.cpp"
@@ -30,4 +30,4 @@
                                                 "Command.cpp"
                                                 "Goblet.cpp"
                                                 "Empty.cpp"
-                                               )
+                                                "../include/MoveBehavior.h" "MoveBehavior.cpp" "../include/StriteMove.h" "StriteMove.cpp")

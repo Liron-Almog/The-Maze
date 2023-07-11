@@ -10,10 +10,11 @@ void Command::setText(const string& name, const sf::Vector2i& pos) {
 //--------------Constructor--------------------
 Command::Command() {
 	//defult
-	m_text.setColor(sf::Color::White);
+	sf::Color color(197, 179, 88);
+	m_text.setColor(color);
 	m_text.setFont(GameFont::instance().getFont(TITLE_FONT));
 	m_text.setCharacterSize(55);
-	m_text.setOutlineThickness(1);
+	m_text.setOutlineThickness(1.5);
 	m_text.setOutlineColor(sf::Color::Black);
 
 }

@@ -21,8 +21,8 @@ Factory<StaticObject>::registerit('g',
 Factory<StaticObject>::registerit(' ',
 	[]() -> unique_ptr<StaticObject> { return std::make_unique<Empty>(); });
 
-Factory<ControllerObj>::registerit('P',
-	[]() -> unique_ptr<ControllerObj> { return std::make_unique <Player> (); });
+Factory<MovingObject>::registerit('P',
+	[]() -> unique_ptr<MovingObject> { return std::make_unique <Player> (); });
 
 
 }

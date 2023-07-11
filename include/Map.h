@@ -7,7 +7,7 @@
 #include "StaticObject.h"
 #include "Factory.h"
 #include "InformationGame.h"
-#include "ControllerObj.h"
+#include "MovingObject.h"
 #include "CollisionHandling.h"
 #include "Graph.h"
 #include <iostream>
@@ -53,7 +53,7 @@ private:
 
 	CollisionHandling m_collisionHandling;
 	Graph m_graph = Graph(WIDTH_OF_MAP * HEIGHT_OF_MAP);
-	unique_ptr<ControllerObj> m_player ;
+	unique_ptr<MovingObject> m_player ;
 	vector<vector<unique_ptr<StaticObject>>> m_staticObj;
 	unsigned m_level = 1;
 	std::fstream m_fileMaps;

@@ -15,7 +15,7 @@ public:
 	bool isDisposed() const;
 	void setColor(const sf::Color color);
 	const sf::Sprite& getSprite() const;
-
+	void moveSprite(const sf::Vector2f&);
 protected:
 
 	bool m_isDisposed = false;
