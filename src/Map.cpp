@@ -1,5 +1,4 @@
 #include "Map.h"
-#include "Player.h"
 //------------UpdateStatusGame--------------
 void Map::UpdateStatusGame() {
 
@@ -9,24 +8,28 @@ void Map::UpdateStatusGame() {
 //------------movePlayer--------------------
 void Map::moveObj(const float& elapsedTime) {
 
-	//for(auto obj: m_movingObj)
-	//	obj->move(elapsedTime);
+	for (int i = 0; i < m_movingObj.size(); i++)
+		m_movingObj[i]->move(elapsedTime);
 
 }
 //-------------setPlayerDirection------------------
 void Map::setPlayerDirection(const sf::Vector2f& dir) {
 	
-	//m_player->setDirection(dir);
-	/*for (int i = 0; i < m_movingObject.size(); i++)
-	{
-		if (Ghost* ghost = dynamic_cast<Ghost*>(m_movingObject[i].get()))
-			ghost->setPrevDirection(m_player->getSprite().getPosition());*/
+	Player* player = getPointerToPlayer();
+	player->setDirection(dir);
+
 }
 //-------------checksCollistion-------------
 void Map::checksCollistion() {
 
 	for (size_t i = 0; i < m_staticObj.size(); i++)
-		for (size_t j = 0; j < m_staticObj[i].size(); j++)
+		for (size_t j = 0; j < m_staticObj[i].size(); j++) 
+			for (size_t k = 0; k < m_movingObj.size(); k++) {
+				if (isColiistion(*m_movingObj[k], *m_staticObj[i][j]))
+					m_collisionHandling.processCollision(*m_movingObj[k], *m_staticObj[i][j]);
+			}
+
+		
 		//	if (isColiistion(*m_player, *m_staticObj[i][j]))
 		//			m_collisionHandling.processCollision(*m_player, *m_staticObj[i][j]);
 
@@ -41,21 +44,22 @@ int Map::getTime() const {
 //--------------getTime--------------------
 unsigned Map::getGlobletCollected() const {
 
-	Player* player;
-	//player = static_cast<Player*>(m_player.get());
+	Player* player = getPointerToPlayer();
 	return player->getGobelt();
 }
-void getPlayerPointer() {
-	//for(auto m_m)
+Player * Map::getPointerToPlayer() const {
+
+	for (int i = 0; i < m_movingObj.size(); i++) {
+		if (Player* player = dynamic_cast<Player*>(m_movingObj[i].get()))
+			return player;
+	}
 }
 //------------checkWheterMakeDFS-----------
 void Map::checkWheterMakeDFS() {
 
-	//Player* player;
-	//player = static_cast<Player*>(m_player.get());
-
-	//if (player->getGobelt() == MAXIMUM_GOBLET && !m_DFS)
-	//	paintTheTrackViaDFS();
+	auto player = getPointerToPlayer();
+	if (player->getGobelt() == MAXIMUM_GOBLET && !m_DFS)
+		paintTheTrackViaDFS();
 }
 //------------checkDisposedObject-----------
 void Map::checkDisposedObject() {
@@ -68,28 +72,17 @@ void Map::checkDisposedObject() {
 					GameTexture::instance().getTexture(DOOR))
 					readMapFromFile(true);
 
-				
-				auto pos = m_staticObj[i][j]->getSprite().getPosition();
-				m_staticObj[i][j].release();
-				m_staticObj[i][j] = Factory<StaticObject>::create(' ');
-				m_staticObj[i][j]->setTilePosition(pos);
+				m_staticObj[i].erase(m_staticObj[i].begin() + j);
 			}
 }
-//-----------------getLevel-----------------
-unsigned Map::getLevel() const {
-	return m_level;
-}
+
 //---------------clearVectors----------------
 void Map::clearVectors() {
 
 	m_staticObj.clear();
 	m_movingObj.clear();
 }
-//-----------------setNextLevel-----------------
-void Map::setNextLevel() {
 
-	m_level++;
-}
 //-------------------isGameOver-----------------
 bool Map::isGameOver() const{
 
@@ -114,13 +107,14 @@ bool Map::isColiistion(const GameObject& ob1, const GameObject& ob2) {
 //------------------------drawMap----------------------------
 void Map::drawMap(sf::RenderWindow& window) {
 
-
-	
 	window.draw(m_background);
 	for (size_t i = 0; i < m_staticObj.size(); i++) 
 		for (size_t j = 0; j < m_staticObj[i].size(); j++)
-				m_staticObj[i][j]->draw(window);
-			
+			m_staticObj[i][j]->draw(window);
+
+	for (size_t i = 0; i < m_movingObj.size(); i++)
+		m_movingObj[i]->draw(window);
+
 	m_informationBar.draw(window);
 
 }
@@ -136,40 +130,41 @@ Map::Map()
 //--------------readMapFromFile----------
 void Map::readMapFromFile(const bool nextLevel) {
 
-	char tile;
+	m_gameOver = false;
+	//clears all the objects
+	m_movingObj.clear();
+	m_staticObj.clear();
+	m_staticObj.resize(HEIGHT_OF_MAP);
 
-	if (!nextLevel)
-		m_fileMaps.seekg(-((HEIGHT_OF_MAP) * (WIDTH_OF_MAP + 2) + 3), std::ios::cur);
+	//reads map
+	for (int row = 0; row < HEIGHT_OF_MAP; row++)
+	{
+		char charachter;
+		if (row != 0)
+			charachter = m_file.get();//eats the ENTER
 
-	else {
-		m_fileMaps >> m_level;
-		m_DFS = false;
-	}
+		for (int col = 0; col < WIDTH_OF_MAP; col++)
+		{
+			charachter = m_file.get();
+			if (charachter == GAME_OVER) {
+				m_gameOver = true;
+				return;
+			}
 
-	if (m_level == GAME_OVER) {
-		m_gameOver = true;
-		return;
-	}
-	clearVectors();
-	m_gameTime.startTime();
-	for (size_t row = 0; row < HEIGHT_OF_MAP; row++) {
-		tile = m_fileMaps.get();//eats the \n
-		vector<unique_ptr<StaticObject>> temp;
-		for (size_t col = 0; col < WIDTH_OF_MAP; col++){
-
-			tile = m_fileMaps.get();
-			insertPlayer(tile, sf::Vector2f(col * (WALL_SIZE) +10 + WALL_SIZE*2, row * (WALL_SIZE +1) + 160), temp);
+			//calculates the location of object
+			auto location = sf::Vector2f(col * (WALL_SIZE)+10 + WALL_SIZE * 2, row * (WALL_SIZE + 1) + 160);
+			createObject(charachter, location,row);
 		}
-		m_staticObj.push_back(move(temp));
 	}
-	tile = m_fileMaps.get();//eats the \n
+	char charachter = m_file.get();
+	m_gameTime.startTime();
 	addEdgesForGraph();
 }
 //--------------addEdgesForGraph---------------
 void Map::addEdgesForGraph() {
 
 	for (size_t row = 0; row < m_staticObj.size(); row++) {
-		for (size_t col = 0; col < m_staticObj[row].size(); col++)
+		for (size_t col = 40; col < m_staticObj[row].size(); col++)
 			if (typeid(*m_staticObj[row][col]) != typeid(Wall))
 				checkNeighborsAndInsert(row, col);
 	}
@@ -177,13 +172,15 @@ void Map::addEdgesForGraph() {
 
 void Map::getPositionOfSourceAndTarget(int & source,int & target) {
 
+	auto player = getPointerToPlayer();
+
 	for (int row = 0; row < m_staticObj.size() ; row++)
 		for (int col = 0; col < m_staticObj[row].size(); col++) {
 
-			/*if (isColiistion(*m_player, *m_staticObj[row][col]) && typeid(* m_staticObj[row][col]) != typeid(Wall))
+			if (isColiistion(*player, *m_staticObj[row][col]) && typeid(*m_staticObj[row][col]) != typeid(Wall))
 				source = row * WIDTH_OF_MAP + col;
 			if (typeid(*m_staticObj[row][col]) == typeid(Door))
-				target = row * WIDTH_OF_MAP + col;*/
+				target = row * WIDTH_OF_MAP + col;
 		}
 
 }
@@ -216,42 +213,39 @@ void Map::checkNeighborsAndInsert(const int & row, const int& col) {
 	if (row -1 > -1 && typeid(*m_staticObj[row-1][col]) != typeid(Wall))
 		m_graph.addEdge(currentNode, (row - 1) * WIDTH_OF_MAP + col );
 	//bottom node
-	if (row + 1 < HEIGHT_OF_MAP && typeid(*m_staticObj[row+1][col]) != typeid(Wall))
+	if (row + 1 < HEIGHT_OF_MAP && m_staticObj[row + 1].size() > col && typeid(*m_staticObj[row+1][col]) != typeid(Wall))
 		m_graph.addEdge(currentNode, (row + 1) * WIDTH_OF_MAP + col);
 
 	// left node
 	if (col - 1 > -1 && typeid(*m_staticObj[row][col-1]) != typeid(Wall))
 		m_graph.addEdge(currentNode, row * WIDTH_OF_MAP + col -1);
 	// right node
-	if (col + 1 < WIDTH_OF_MAP && typeid(*m_staticObj[row][col+1]) != typeid(Wall))
+	if (col + 1 < WIDTH_OF_MAP && m_staticObj[row].size() > col +1 && typeid(*m_staticObj[row][col+1]) != typeid(Wall))
 		m_graph.addEdge(currentNode, row * WIDTH_OF_MAP + col + 1);
 }
-//The function gets tile that presents tool on mapand inserts
-//to the appropriate  vector by "factory design patterns"
-//-----------insertPlayer------------------
-void Map::insertPlayer(const char& tile, const sf::Vector2f& pos, vector<unique_ptr<StaticObject>>& temp) {
-
-
-
-	//if (isupper(tile)) {//ControllerObj players
-	//	temp.emplace_back(Factory<MovingObject>::create(tile));
-	//	temp[temp.size() - 1]->setTilePosition(pos);
-	//}
-
-	//else if (islower(tile)) {//static players
-	//	temp.emplace_back(Factory<StaticObject>::create(tile));
-	//	temp[temp.size() - 1]->setTilePosition(pos);
-	//}
-	//if (tile != 'w') {
-	//	temp.emplace_back(Factory<StaticObject>::create(' '));
-	//	temp[temp.size() - 1]->setTilePosition(pos);
-	//}
+void Map::createObject(char charachter, sf::Vector2f location,const int & row)
+//==========createObject==========
+//The function creates objects via factory
+{
+	if (isupper(charachter)) {
+		m_movingObj.emplace_back(Factory<MovingObject>::create(charachter));
+		m_movingObj[m_movingObj.size() - 1]->setTilePosition(location);
+	}
+	else if (islower(charachter)) {
+		m_staticObj[row].emplace_back(Factory<StaticObject>::create(charachter));
+		m_staticObj[row][m_staticObj[row].size()-1]->setTilePosition(location);
+	}
+	if (charachter != 'w') {
+		m_staticObj[row].emplace_back(Factory<StaticObject>::create(' '));
+		m_staticObj[row][m_staticObj[row].size() - 1]->setTilePosition(location);
+	}
+	
 }
 //-----------openFileMap----------------------
 void Map::openFileMap() {
 
-	m_fileMaps.open("Board.txt");//open file
-	if (!m_fileMaps.is_open())
+	m_file.open("Board.txt");//open file
+	if (!m_file.is_open())
 		throw std::runtime_error("Cannot open a file");
 
 }

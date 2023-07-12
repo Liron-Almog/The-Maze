@@ -12,9 +12,9 @@ configure_file ("Image/Player.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Image/CoinAnimation.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Image/Door.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Image/Empty.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Image/EnemyAnimation.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Image/ComputerPlayer.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Board.txt" ${CMAKE_BINARY_DIR} COPYONLY)
-
 
 configure_file ("Font/TimeFont.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Font/Candy_Pop!-demo-font.ttf" ${CMAKE_BINARY_DIR} COPYONLY)

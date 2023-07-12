@@ -11,7 +11,7 @@ public:
 	void handleEvents(sf::RenderWindow& window);
 	void drawGame(sf::RenderWindow&);
 	void run(sf::RenderWindow& window);
-	void checkStatusGame(sf::RenderWindow& window, unsigned& level);
+	void checkStatusGame(sf::RenderWindow& window);
 
 private:
 

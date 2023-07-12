@@ -6,7 +6,6 @@ Enemy::Enemy()
 {
   
     m_sprite.setTexture(*GameTexture::instance().getTexture(ENEMY));
- 
     m_sprite.setTextureRect(*m_enemyAnimation.get_uvRect());
     m_moveBehavior = std::make_unique<RandomMove>();
  
@@ -20,8 +19,6 @@ void Enemy::changeDirection()
     RandomMove* myMoveBehavior;
     myMoveBehavior = dynamic_cast<RandomMove*>(m_moveBehavior.get());
     setDirection(myMoveBehavior->changeDirection(m_direction));
-
-
 }
 
 void Enemy::move(const float& timepassed)
@@ -31,7 +28,6 @@ void Enemy::move(const float& timepassed)
     m_enemyAnimation.updateAnimation(m_enemyAnimation.getRowByDirection(m_direction), timepassed);//calculates the right animation
     m_sprite.setTextureRect(*m_enemyAnimation.get_uvRect());//sets the correct texture
 
-    //creates direction + speed + time that was passed
     m_speed = timepassed * SPEED_ENEMY;
 
     m_moveBehavior->moveObject(*this);

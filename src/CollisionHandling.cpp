@@ -3,6 +3,7 @@
 #include "Wall.h"
 #include "Player.h"
 #include "Door.h"
+#include "Enemy.h"
 #include "Coin.h"
 //The function handles a collision of Door and Player
 //--------------wallPlayer--------------------
@@ -37,14 +38,16 @@ void wallPlayer(GameObject& gameObject1, GameObject& gameObject2)
     player.moveStepBack();
     
 }
+//The function handles a collision of Wall and Player
+//--------------wallPlayer--------------------
+void enemyWall(GameObject& gameObject1, GameObject& gameObject2)
+{
 
-//void wallComputerPlayer(GameObject& gameObject1, GameObject& gameObject2)
-//{
-//
-//    Player& player = static_cast<Player&>(gameObject1);
-//    player.moveStepBack();
-//
-//}
+    Enemy& enemy = static_cast<Enemy&>(gameObject1);
+    enemy.moveBack();
+
+}
+
 
 //--------------processCollision--------------------
 void CollisionHandling::processCollision(GameObject& object1, GameObject& object2) {
@@ -57,10 +60,11 @@ void CollisionHandling::processCollision(GameObject& object1, GameObject& object
 //--------------Constructor--------------------
 CollisionHandling::CollisionHandling()
 {
+    m_collisionMap[Key(typeid(Enemy), typeid(Wall))] = &enemyWall;
     m_collisionMap[Key(typeid(Player), typeid(Wall))] = &wallPlayer;
     m_collisionMap[Key(typeid(Player), typeid(Door))] = &doorPlayer;
     m_collisionMap[Key(typeid(Player), typeid(Coin))] = &playerGoblet;
-    /*m_collisionMap[Key(typeid(ComputerPlayer), typeid(Wall))] = &wallComputerPlayer;*/
+   
 
 }
 

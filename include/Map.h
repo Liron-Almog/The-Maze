@@ -10,6 +10,7 @@
 #include "MovingObject.h"
 #include "CollisionHandling.h"
 #include "Graph.h"
+#include "Player.h"
 #include <iostream>
 #include "Const.h"
 #include "GameTime.h"
@@ -20,22 +21,19 @@
 class Map
 {
 public:
-
+	void createObject(char charachter, sf::Vector2f location, const int& row);
 	void setPlayerDirection(const sf::Vector2f &);
 	int getTime() const;
 	unsigned getGlobletCollected() const;
 	void checkWheterMakeDFS();
 	bool isTimeOver();
 	bool isGameOver() const;
-	void setNextLevel();
 	void checkDisposedObject();
 	void paintTheTrackViaDFS();
 	void addEdgesForGraph();
-	unsigned getLevel() const;
 	void clearVectors();
 	void checksCollistion();
 	bool isColiistion(const GameObject& ob1, const GameObject& ob2);
-	void insertPlayer(const char&, const sf::Vector2f&, vector<unique_ptr<StaticObject>>&);
 	Map();
 	void UpdateStatusGame();
 	~Map() = default;
@@ -45,6 +43,8 @@ public:
 	void getPositionOfSourceAndTarget(int & source, int & target);
 
 private:
+
+	Player * getPointerToPlayer() const;
 
 	void paintTheTrack(const vector<int>& track);
 	void readMapFromFile(const bool);
@@ -57,8 +57,7 @@ private:
 	Graph m_graph = Graph(WIDTH_OF_MAP * HEIGHT_OF_MAP);
 	vector<unique_ptr<MovingObject>> m_movingObj;
 	vector<vector<unique_ptr<StaticObject>>> m_staticObj;
-	unsigned m_level = 1;
-	std::fstream m_fileMaps;
+	std::fstream m_file;
 	sf::Sprite m_background;
 	GameTime m_gameTime;
 	bool m_gameOver = false,

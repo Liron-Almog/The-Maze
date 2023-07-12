@@ -23,7 +23,7 @@ void Controller::handleEvents(sf::RenderWindow& window) {
     float elapedTime = 0.0f;
     sf::Vector2f direction;
     sf::Event event;
-    unsigned level = FIRST_LEVEL;
+
 
     while (window.isOpen() && !m_map.isGameOver())//In game
     {
@@ -32,23 +32,20 @@ void Controller::handleEvents(sf::RenderWindow& window) {
         m_map.setPlayerDirection(getDirection());
         m_map.moveObj(elapedTime);
         m_map.checksCollistion();
-        checkStatusGame(window, level);
+        checkStatusGame(window);
         m_map.UpdateStatusGame();
         drawGame(window);
     
     }
 }
-void Controller::checkStatusGame(sf::RenderWindow& window,unsigned & level) {
+void Controller::checkStatusGame(sf::RenderWindow& window) {
 
     if (m_map.isGameOver()) {
     }
     else if (m_map.isTimeOver()) {
      
     }
-    else if (level != m_map.getLevel()) {
-        m_map.setNextLevel();
-        drawGame(window);
-    }
+  
 }
 //The function returns the direction that chose by user 
 //---------------getDirection----------------------

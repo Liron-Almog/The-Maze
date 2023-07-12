@@ -6,7 +6,7 @@ void InformationGame::setTime(const int& currentTime) {
 }
 
 int InformationGame::getTime() const {
-	std::cout << m_currentTime;
+
 	return m_currentTime;
 }
 void InformationGame::setGobletCollected(const unsigned& goblets) {
