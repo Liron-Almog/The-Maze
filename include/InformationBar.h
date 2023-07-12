@@ -3,7 +3,7 @@
 #include "Const.h"
 #include "DataBar.h"
 #include "TimeInformationBar.h"
-#include "GobletInformationBar.h"
+#include "CoinInformationBar.h"
 class InformationBar
 {
 public:

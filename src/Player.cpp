@@ -4,7 +4,6 @@ Player::Player()
 {
 
 	m_moveBehavior = make_unique< StriteMove>();
-	m_speed = PLAYER_SPEED;
 	m_sprite.setTexture(*GameTexture::instance().getTexture(PLAYER));
 	m_sprite.setScale(0.9, 0.9);
 	m_sprite.setTextureRect(*m_playerAnimation.get_uvRect());
@@ -35,7 +34,7 @@ void Player::move(const float& elapsedTime) {
 	
 		m_playerAnimation.updateAnimation(m_playerAnimation.getRowByDirection(m_direction), elapsedTime);//calculates the right animation
 		m_sprite.setTextureRect(*m_playerAnimation.get_uvRect());
-		m_direction = sf::Vector2f(m_direction.x * elapsedTime, m_direction.y * elapsedTime);
+		m_speed = PLAYER_SPEED * elapsedTime;
 		m_moveBehavior->moveObject(*this);
 
 	}

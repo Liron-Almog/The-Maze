@@ -3,7 +3,7 @@
 #include "Wall.h"
 #include "Player.h"
 #include "Door.h"
-#include "Goblet.h"
+#include "Coin.h"
 //The function handles a collision of Door and Player
 //--------------wallPlayer--------------------
 void doorPlayer(GameObject& gameObject1, GameObject& gameObject2)
@@ -20,7 +20,7 @@ void doorPlayer(GameObject& gameObject1, GameObject& gameObject2)
 void playerGoblet(GameObject& gameObject1, GameObject& gameObject2)
 {
 
-    Goblet& goblet = static_cast<Goblet&>(gameObject2);
+    Coin& goblet = static_cast<Coin&>(gameObject2);
     Player& player = static_cast<Player&>(gameObject1);
 
     goblet.setDisposed();
@@ -59,7 +59,7 @@ CollisionHandling::CollisionHandling()
 {
     m_collisionMap[Key(typeid(Player), typeid(Wall))] = &wallPlayer;
     m_collisionMap[Key(typeid(Player), typeid(Door))] = &doorPlayer;
-    m_collisionMap[Key(typeid(Player), typeid(Goblet))] = &playerGoblet;
+    m_collisionMap[Key(typeid(Player), typeid(Coin))] = &playerGoblet;
     /*m_collisionMap[Key(typeid(ComputerPlayer), typeid(Wall))] = &wallComputerPlayer;*/
 
 }

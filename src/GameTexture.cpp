@@ -10,10 +10,11 @@ GameTexture::GameTexture()
 	m_background[MENU_BACKGROUND].loadFromFile("MenuBackground.png");
 	m_objectTexture[PLAYER].loadFromFile("Player.png");
 	m_objectTexture[WALL].loadFromFile("Wall.png");
-	m_objectTexture[GOBLET].loadFromFile("Goblet.png");
+	m_objectTexture[COIN].loadFromFile("CoinAnimation.png");
 	m_objectTexture[DOOR].loadFromFile("Door.png");
 	m_objectTexture[LOADING].loadFromFile("Loading.png");
 	m_objectTexture[EMPTY].loadFromFile("Empty.png");
+	m_objectTexture[ENEMY].loadFromFile("EnemyAnimation.png");
 	m_objectTexture[COMPUTER_PLAYER].loadFromFile("ComputerPlayer.png");
 	m_transitionScreens[QUIT_SCREEN].loadFromFile("Quit.png");
 	m_objectTexture[SQUARE_INSIDE_SQUARE].loadFromFile("SquareInsideSquare.png");

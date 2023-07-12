@@ -5,12 +5,11 @@ Enemy::Enemy()
 //============Constructor=============
 {
   
-   // m_enemyAnim = Animation(sf::Vector2i(4, 4), 0.16, *SingeltonTexture::instance().getTexture(CHARACTER, ENEMY_TEXTURE));//initialize the animation
-    //m_sprite.setTexture(*SingeltonTexture::instance().getTexture(CHARACTER, ENEMY_TEXTURE));
-    m_sprite.setTextureRect(*m_enemyAnim.get_uvRect());
+    m_sprite.setTexture(*GameTexture::instance().getTexture(ENEMY));
+ 
+    m_sprite.setTextureRect(*m_enemyAnimation.get_uvRect());
     m_moveBehavior = std::make_unique<RandomMove>();
  
-   // changeDirection();
 }
 
 void Enemy::changeDirection()
@@ -29,10 +28,8 @@ void Enemy::move(const float& timepassed)
 //===========move==============
 {
 
-    int correctRowForAnimation = m_enemyAnim.getRowByDirection(m_direction);
-
-    m_enemyAnim.updateAnimation(correctRowForAnimation, timepassed);//calculates the right animation
-    m_sprite.setTextureRect(*m_enemyAnim.get_uvRect());//sets the correct texture
+    m_enemyAnimation.updateAnimation(m_enemyAnimation.getRowByDirection(m_direction), timepassed);//calculates the right animation
+    m_sprite.setTextureRect(*m_enemyAnimation.get_uvRect());//sets the correct texture
 
     //creates direction + speed + time that was passed
     m_speed = timepassed * SPEED_ENEMY;

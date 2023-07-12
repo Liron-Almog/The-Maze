@@ -3,7 +3,7 @@
 #include "Animation.h"
 #include "MovingObject.h"
 #include "RandomMove.h"
-
+#include "GameTexture.h"
 class Enemy : public MovingObject
 {
 public:
@@ -21,7 +21,8 @@ public:
 	void moveBack();
 
 private:
-	Animation m_enemyAnim;
+	Animation m_enemyAnimation = Animation(sf::Vector2i(4, 4), 0.25, *GameTexture::instance().getTexture(ENEMY));
+
 	static bool m_registerit;
 };
 

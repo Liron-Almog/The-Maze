@@ -9,7 +9,7 @@
                                                "StaticObject.cpp"
                                                "DataBar.cpp"
                                                "InformationGame.cpp"
-                                               "GobletInformationBar.cpp"
+                                               "CoinInformationBar.cpp"
                                                 "TimeInformationBar.cpp"
                                                "Factory.cpp"
                                                "Wall.cpp"
@@ -28,6 +28,6 @@
                                                 "GameTime.cpp"
                                                 "Menu.cpp"
                                                 "Command.cpp"
-                                                "Goblet.cpp"
+                                                "Coin.cpp"
                                                 "Empty.cpp"
                                                 "../include/MoveBehavior.h" "MoveBehavior.cpp" "../include/StriteMove.h" "StriteMove.cpp" "RandomMove.cpp" "../include/RandomMove.h" "Enemy.cpp" "../include/Enemy.h")

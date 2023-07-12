@@ -3,16 +3,17 @@
 #include "GameFont.h"
 #include "GameTexture.h"
 
-class GobletInformationBar : public DataBar
+class CoinInformationBar : public DataBar
 {
 public:
-	GobletInformationBar(InformationGame* informationGame);
-	~GobletInformationBar () = default;
+
+	CoinInformationBar(InformationGame* informationGame);
+	~CoinInformationBar () = default;
 	virtual void update() override;
 	virtual void draw(sf::RenderWindow& window) override;
 
 private:
-	sf::Sprite m_gobeltltSprite;
+	sf::Sprite m_coinSprite;
 	sf::Text m_numberOfGoblet;
 
 };

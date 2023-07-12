@@ -55,7 +55,7 @@ private:
 
 	CollisionHandling m_collisionHandling;
 	Graph m_graph = Graph(WIDTH_OF_MAP * HEIGHT_OF_MAP);
-	unique_ptr<MovingObject> m_player ;
+	vector<unique_ptr<MovingObject>> m_movingObj;
 	vector<vector<unique_ptr<StaticObject>>> m_staticObj;
 	unsigned m_level = 1;
 	std::fstream m_fileMaps;

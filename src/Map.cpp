@@ -9,12 +9,14 @@ void Map::UpdateStatusGame() {
 //------------movePlayer--------------------
 void Map::moveObj(const float& elapsedTime) {
 
-	m_player->move(elapsedTime);
+	//for(auto obj: m_movingObj)
+	//	obj->move(elapsedTime);
+
 }
 //-------------setPlayerDirection------------------
 void Map::setPlayerDirection(const sf::Vector2f& dir) {
 	
-	m_player->setDirection(dir);
+	//m_player->setDirection(dir);
 	/*for (int i = 0; i < m_movingObject.size(); i++)
 	{
 		if (Ghost* ghost = dynamic_cast<Ghost*>(m_movingObject[i].get()))
@@ -25,8 +27,8 @@ void Map::checksCollistion() {
 
 	for (size_t i = 0; i < m_staticObj.size(); i++)
 		for (size_t j = 0; j < m_staticObj[i].size(); j++)
-			if (isColiistion(*m_player, *m_staticObj[i][j]))
-					m_collisionHandling.processCollision(*m_player, *m_staticObj[i][j]);
+		//	if (isColiistion(*m_player, *m_staticObj[i][j]))
+		//			m_collisionHandling.processCollision(*m_player, *m_staticObj[i][j]);
 
 	checkDisposedObject();
 	checkWheterMakeDFS();
@@ -40,17 +42,20 @@ int Map::getTime() const {
 unsigned Map::getGlobletCollected() const {
 
 	Player* player;
-	player = static_cast<Player*>(m_player.get());
+	//player = static_cast<Player*>(m_player.get());
 	return player->getGobelt();
+}
+void getPlayerPointer() {
+	//for(auto m_m)
 }
 //------------checkWheterMakeDFS-----------
 void Map::checkWheterMakeDFS() {
 
-	Player* player;
-	player = static_cast<Player*>(m_player.get());
+	//Player* player;
+	//player = static_cast<Player*>(m_player.get());
 
-	if (player->getGobelt() == MAXIMUM_GOBLET && !m_DFS)
-		paintTheTrackViaDFS();
+	//if (player->getGobelt() == MAXIMUM_GOBLET && !m_DFS)
+	//	paintTheTrackViaDFS();
 }
 //------------checkDisposedObject-----------
 void Map::checkDisposedObject() {
@@ -78,7 +83,7 @@ unsigned Map::getLevel() const {
 void Map::clearVectors() {
 
 	m_staticObj.clear();
-	m_player.reset();
+	m_movingObj.clear();
 }
 //-----------------setNextLevel-----------------
 void Map::setNextLevel() {
@@ -109,15 +114,13 @@ bool Map::isColiistion(const GameObject& ob1, const GameObject& ob2) {
 //------------------------drawMap----------------------------
 void Map::drawMap(sf::RenderWindow& window) {
 
-	Player* player;
-	player = static_cast<Player*>(m_player.get());
+
 	
 	window.draw(m_background);
 	for (size_t i = 0; i < m_staticObj.size(); i++) 
 		for (size_t j = 0; j < m_staticObj[i].size(); j++)
 				m_staticObj[i][j]->draw(window);
 			
-	m_player->draw(window);
 	m_informationBar.draw(window);
 
 }
@@ -177,10 +180,10 @@ void Map::getPositionOfSourceAndTarget(int & source,int & target) {
 	for (int row = 0; row < m_staticObj.size() ; row++)
 		for (int col = 0; col < m_staticObj[row].size(); col++) {
 
-			if (isColiistion(*m_player, *m_staticObj[row][col]) && typeid(* m_staticObj[row][col]) != typeid(Wall))
+			/*if (isColiistion(*m_player, *m_staticObj[row][col]) && typeid(* m_staticObj[row][col]) != typeid(Wall))
 				source = row * WIDTH_OF_MAP + col;
 			if (typeid(*m_staticObj[row][col]) == typeid(Door))
-				target = row * WIDTH_OF_MAP + col;
+				target = row * WIDTH_OF_MAP + col;*/
 		}
 
 }
@@ -230,17 +233,19 @@ void Map::insertPlayer(const char& tile, const sf::Vector2f& pos, vector<unique_
 
 
 
-	if (isupper(tile)) {//ControllerObj players
-		m_player = (Factory<MovingObject>::create(tile));
-		m_player->setTilePosition(pos);
-		temp.emplace_back(Factory<StaticObject>::create(' '));
-		temp[temp.size() - 1]->setTilePosition(pos);
-	}
+	//if (isupper(tile)) {//ControllerObj players
+	//	temp.emplace_back(Factory<MovingObject>::create(tile));
+	//	temp[temp.size() - 1]->setTilePosition(pos);
+	//}
 
-	if (islower(tile)|| tile == ' ') {//static players
-		temp.emplace_back(Factory<StaticObject>::create(tile));
-		temp[temp.size() - 1]->setTilePosition(pos);
-	}
+	//else if (islower(tile)) {//static players
+	//	temp.emplace_back(Factory<StaticObject>::create(tile));
+	//	temp[temp.size() - 1]->setTilePosition(pos);
+	//}
+	//if (tile != 'w') {
+	//	temp.emplace_back(Factory<StaticObject>::create(' '));
+	//	temp[temp.size() - 1]->setTilePosition(pos);
+	//}
 }
 //-----------openFileMap----------------------
 void Map::openFileMap() {

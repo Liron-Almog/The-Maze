@@ -14,6 +14,6 @@ InformationBar::InformationBar(InformationGame * m_informationGame)
 {
 
 	m_dataBar.push_back(std::make_unique<TimeInformationBar>(m_informationGame));
-	m_dataBar.push_back(std::make_unique<GobletInformationBar>(m_informationGame));
+	m_dataBar.push_back(std::make_unique<CoinInformationBar>(m_informationGame));
 }
 
