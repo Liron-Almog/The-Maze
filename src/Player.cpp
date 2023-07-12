@@ -1,7 +1,10 @@
-
+#include "StriteMove.h"
 #include "Player.h"
 Player::Player()
 {
+
+	m_moveBehavior = make_unique< StriteMove>();
+	m_speed = PLAYER_SPEED;
 	m_sprite.setTexture(*GameTexture::instance().getTexture(PLAYER));
 	m_sprite.setScale(0.9, 0.9);
 	m_sprite.setTextureRect(*m_playerAnimation.get_uvRect());
@@ -20,18 +23,22 @@ unsigned Player::getGobelt() const {
 }
 
 void Player::moveStepBack() {
-	m_sprite.move(-m_lastDireation);
+	m_sprite.move(-m_direction.x*m_speed, -m_direction.y * m_speed);
 }
 Player::~Player()
 {
 }
 
-void Player::move(const sf::Vector2f& direction, const float& elapsedTime) {
+void Player::move(const float& elapsedTime) {
 
-	m_lastDireation = sf::Vector2f(direction.x * PLAYER_SPEED * elapsedTime, direction.y * PLAYER_SPEED * elapsedTime);
-	m_sprite.move(m_lastDireation);
-	m_playerAnimation.update(m_playerAnimation.getRowOfStandatAni(direction), elapsedTime);
-	m_sprite.setTextureRect(*m_playerAnimation.get_uvRect());
+	if (m_direction.x != 0 || m_direction.y != 0) {
+	
+		m_playerAnimation.updateAnimation(m_playerAnimation.getRowByDirection(m_direction), elapsedTime);//calculates the right animation
+		m_sprite.setTextureRect(*m_playerAnimation.get_uvRect());
+		m_direction = sf::Vector2f(m_direction.x * elapsedTime, m_direction.y * elapsedTime);
+		m_moveBehavior->moveObject(*this);
+
+	}
 }
 
 void Player::draw(sf::RenderWindow& window) {

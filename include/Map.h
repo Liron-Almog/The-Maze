@@ -20,6 +20,8 @@
 class Map
 {
 public:
+
+	void setPlayerDirection(const sf::Vector2f &);
 	int getTime() const;
 	unsigned getGlobletCollected() const;
 	void checkWheterMakeDFS();
@@ -38,7 +40,7 @@ public:
 	void UpdateStatusGame();
 	~Map() = default;
 	void drawMap(sf::RenderWindow& window);
-	void movePlayer(const sf::Vector2f& direction, const float& deltaTime);	
+	void moveObj(const float& deltaTime);	
 	void checkNeighborsAndInsert(const int& row, const int& col);
 	void getPositionOfSourceAndTarget(int & source, int & target);
 

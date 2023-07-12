@@ -7,11 +7,19 @@ void Map::UpdateStatusGame() {
 	m_informationGame.setTime(m_gameTime.getTime());
 }
 //------------movePlayer--------------------
-void Map::movePlayer(const sf::Vector2f& direction, const float& elapsedTime) {
+void Map::moveObj(const float& elapsedTime) {
 
 	m_player->move(elapsedTime);
 }
-
+//-------------setPlayerDirection------------------
+void Map::setPlayerDirection(const sf::Vector2f& dir) {
+	
+	m_player->setDirection(dir);
+	/*for (int i = 0; i < m_movingObject.size(); i++)
+	{
+		if (Ghost* ghost = dynamic_cast<Ghost*>(m_movingObject[i].get()))
+			ghost->setPrevDirection(m_player->getSprite().getPosition());*/
+}
 //-------------checksCollistion-------------
 void Map::checksCollistion() {
 

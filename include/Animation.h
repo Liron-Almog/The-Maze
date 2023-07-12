@@ -3,21 +3,24 @@
 class Animation
 {
 public:
-	Animation(const sf::Texture&,sf::Vector2u imageCount ,float);
+	//===========Constructor=============
+	Animation(sf::Vector2i, float, const sf::Texture&);
+	Animation() {};
+	//=========Destractor================
 	~Animation() = default;
-	void update(const unsigned&,const float&);
+
+	void updateAnimation(const int&, float);
 	const sf::IntRect* get_uvRect() const;
-	const sf::Vector2u & getCurrentImage() const;
-	void setCurrentRow(const unsigned &);
-	const sf::Vector2u & getImageCount() const;
-	unsigned getRowOfStandatAni(const sf::Vector2f& dir) const;
+
+	//=================getter method==================
+	int getRowByDirection(const sf::Vector2f&) const;
 
 private:
 
+	sf::Vector2i m_rowAndColOfImage;
+	double m_maximumTime = 0;
+	sf::Vector2i  m_currentImage = sf::Vector2i(0, 0);
+	double	m_changeBetweenTextureTime;
 	sf::IntRect m_uvRect;
-	sf::Vector2u m_imageCount;
-	sf::Vector2u m_currentImage;
 
-		float m_totalTime,
-			m_switchTime;
 };

@@ -30,4 +30,4 @@
                                                 "Command.cpp"
                                                 "Goblet.cpp"
                                                 "Empty.cpp"
-                                                "../include/MoveBehavior.h" "MoveBehavior.cpp" "../include/StriteMove.h" "StriteMove.cpp")
+                                                "../include/MoveBehavior.h" "MoveBehavior.cpp" "../include/StriteMove.h" "StriteMove.cpp" "RandomMove.cpp" "../include/RandomMove.h" "Enemy.cpp" "../include/Enemy.h")

@@ -29,13 +29,8 @@ void Controller::handleEvents(sf::RenderWindow& window) {
     {
         elapedTime = clock.restart().asSeconds();
 
-        //If a long time has passed
-        if (elapedTime > MAXIMUM_DELTA_TIME)
-            elapedTime = clock.restart().asSeconds();
-
-        direction = getDirection();
-        if (STAND != direction) 
-            m_map.movePlayer(direction, elapedTime);
+        m_map.setPlayerDirection(getDirection());
+        m_map.moveObj(elapedTime);
         m_map.checksCollistion();
         checkStatusGame(window, level);
         m_map.UpdateStatusGame();

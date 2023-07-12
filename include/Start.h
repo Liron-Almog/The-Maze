@@ -16,7 +16,6 @@ public:
 
 private:
 	
-	Animation m_loadingAnimation = Animation(*GameTexture::instance().getTexture(LOADING), sf::Vector2u(12, 1), 0.2);
 	sf::Sprite m_loadingSprite;
 };
 

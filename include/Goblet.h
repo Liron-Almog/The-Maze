@@ -9,7 +9,8 @@ public:
 	~Goblet();
 
 private:
-	Animation m_gobletAnimation = Animation(*GameTexture::instance().getTexture(GOBLET)
-		, sf::Vector2u(8, 1), 0.25);
+	Animation m_gobletAnimation = Animation(sf::Vector2i(8, 1), 0.25, *GameTexture::instance().getTexture(GOBLET));
+		
+	
 };
 
