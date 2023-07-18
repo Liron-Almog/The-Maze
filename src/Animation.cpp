@@ -1,9 +1,9 @@
 #include "Animation.h"
 #include <iostream>
 
-int Animation::getRowByDirection(const sf::Vector2f& dir) const
-//=============getRowOfStandatAni============
 //The function returns the corret row of texture by the direction 
+//=============getRowOfStandatAni============
+int Animation::getRowByDirection(const sf::Vector2f& dir) const
 {
 
 	if (dir.x == 1 && dir.y == 0)//right
@@ -16,24 +16,22 @@ int Animation::getRowByDirection(const sf::Vector2f& dir) const
 		return 3;
 
 	return 0;//for warning
-
 }
+
+//==============Constructor===============
 Animation::Animation(sf::Vector2i rowAndColOfImage, float changeBetweenTextureTime, const sf::Texture& photo)
 	: m_rowAndColOfImage(rowAndColOfImage), m_changeBetweenTextureTime(changeBetweenTextureTime)
-	//==============Constructor===============
 {
 	m_uvRect.width = photo.getSize().x / float(rowAndColOfImage.x);
 	m_uvRect.height = photo.getSize().y / float(rowAndColOfImage.y);
 }
+//=========getUvRect===========
 const sf::IntRect* Animation::get_uvRect() const {
-	//=========getUvRect===========
 	return  &m_uvRect;
 }
 
-
-void Animation::updateAnimation(const int& row, float timeThatWasPassed)
 //==========updateAnimation==============
-//updates animation
+void Animation::updateAnimation(const int& row, float timeThatWasPassed)
 {
 
 	m_maximumTime += timeThatWasPassed;

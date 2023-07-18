@@ -4,6 +4,7 @@
 #include "Factory.h"
 #include "Animation.h"
 #include "GameTexture.h"
+
 class Empty : public StaticObject
 {
 public:

@@ -1,6 +1,5 @@
 #include "Controller.h"
 
-
 void Controller::run(sf::RenderWindow & window) {
 
     handleEvents(window);
@@ -33,19 +32,30 @@ void Controller::handleEvents(sf::RenderWindow& window) {
         m_map.moveObj(elapedTime);
         m_map.checksCollistion();
         checkStatusGame(window);
-        m_map.UpdateStatusGame();
-        drawGame(window);
+        if(!m_map.isGameOver())
+            m_map.UpdateStatusGame();
+            drawGame(window);
     
     }
 }
 void Controller::checkStatusGame(sf::RenderWindow& window) {
 
-    if (m_map.isGameOver()) {
+    if (m_map.isGameOver() ) {
+        drawAndSleep(window, m_spriteGameIsOver);
     }
     else if (m_map.isTimeOver()) {
-     
+        drawAndSleep(window, m_spriteTimeIsOver);
+        m_map.readMapFromFile(false);
     }
   
+}
+
+void Controller::drawAndSleep(sf::RenderWindow& window,const sf::Sprite & sprite) {
+
+    window.clear();
+    window.draw(sprite);
+    window.display();
+    std::this_thread::sleep_for(std::chrono::seconds(3));
 }
 //The function returns the direction that chose by user 
 //---------------getDirection----------------------
@@ -75,7 +85,9 @@ Controller::Controller()
     m_title.setStyle(sf::Text::Bold);
     m_title.setColor(sf::Color::White);
     m_title.setPosition(sf::Vector2f(370,35));
-
+    m_spriteTimeIsOver.setTexture(*GameTexture::instance().getTransitionScreen(TIME_IS_OUT_SCREEN));
+    m_spriteGameIsOver.setTexture(*GameTexture::instance().getTransitionScreen(GAME_OVER_SCREEN));
+    
 }
 
 Controller::~Controller()

@@ -5,8 +5,14 @@
 class Coin : public StaticObject
 {
 public:
+
+	//==============Constructor============
 	Coin();
-	~Coin();
+
+	//==============Destractor============
+	~Coin() = default;
+
+	//=================Virtual methods==================
 	virtual void draw(sf::RenderWindow& window) override;
 
 private:

@@ -41,13 +41,12 @@ public:
 	void moveObj(const float& deltaTime);	
 	void checkNeighborsAndInsert(const int& row, const int& col);
 	void getPositionOfSourceAndTarget(int & source, int & target);
-
+	void readMapFromFile(const bool);
 private:
 
 	Player * getPointerToPlayer() const;
 
 	void paintTheTrack(const vector<int>& track);
-	void readMapFromFile(const bool);
 	void openFileMap();
 
 	InformationGame m_informationGame;

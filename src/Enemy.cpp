@@ -1,19 +1,18 @@
 #include "Enemy.h"
 #include <iostream>
 
-Enemy::Enemy() 
 //============Constructor=============
+Enemy::Enemy() 
 {
-  
+    m_sprite.setScale(1.3, 1.3);
     m_sprite.setTexture(*GameTexture::instance().getTexture(ENEMY));
     m_sprite.setTextureRect(*m_enemyAnimation.get_uvRect());
     m_moveBehavior = std::make_unique<RandomMove>();
- 
 }
 
-void Enemy::changeDirection()
-//============changeDirection==========
 //The function lotterys a new direction
+//============changeDirection==========
+void Enemy::changeDirection()
 {
 
     RandomMove* myMoveBehavior;
@@ -21,15 +20,13 @@ void Enemy::changeDirection()
     setDirection(myMoveBehavior->changeDirection(m_direction));
 }
 
-void Enemy::move(const float& timepassed)
 //===========move==============
+void Enemy::move(const float& timepassed)
 {
 
     m_enemyAnimation.updateAnimation(m_enemyAnimation.getRowByDirection(m_direction), timepassed);//calculates the right animation
     m_sprite.setTextureRect(*m_enemyAnimation.get_uvRect());//sets the correct texture
-
     m_speed = timepassed * SPEED_ENEMY;
-
     m_moveBehavior->moveObject(*this);
   
 }

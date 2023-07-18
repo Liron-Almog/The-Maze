@@ -4,13 +4,20 @@
 class DataBar
 {
 public:
-	DataBar(InformationGame * InformationGame);
-	~DataBar() = default;
+
+	//==============Constructor============
+	DataBar(InformationGame* InformationGame);
+
+	//==============Destractor============
+	virtual ~DataBar() = default;
+
+	//=================Virtual methods==================
 	virtual void update() = 0;
 	virtual void draw(sf::RenderWindow& window) = 0;
 
 protected:
 	InformationGame* m_informationGame;
+
 private:
 
 };

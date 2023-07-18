@@ -12,7 +12,7 @@ int main()
 
 	try {
 		FactoryObj::FactoryObj();//Loads Objs
-		sf::RenderWindow window(sf::VideoMode(1200, 800, 32), "The Maze", sf::Style::Close);
+		sf::RenderWindow window(sf::VideoMode(1200, 840, 32), "The Maze", sf::Style::Close);
 
 		window.setFramerateLimit(FPS);
 		sf::Color(197, 179, 88);

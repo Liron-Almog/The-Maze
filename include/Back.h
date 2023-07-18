@@ -3,8 +3,12 @@
 class Back :public Command
 {
 public:
-	virtual bool execute(sf::RenderWindow&);
+
+	//===========Constructor=============
 	Back() = default;
+
+	//=================Virtual methods==================
+	virtual bool execute(sf::RenderWindow&);
 	virtual ~Back() = default;
 	
 private:

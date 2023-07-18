@@ -14,6 +14,8 @@ configure_file ("Image/Door.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Image/Empty.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Image/EnemyAnimation.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Image/ComputerPlayer.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Backgrounds/TimeIsOver.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Backgrounds/GameOver.jpg" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Board.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("Font/TimeFont.ttf" ${CMAKE_BINARY_DIR} COPYONLY)

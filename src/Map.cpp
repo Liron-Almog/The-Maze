@@ -24,17 +24,17 @@ void Map::checksCollistion() {
 
 	for (size_t i = 0; i < m_staticObj.size(); i++)
 		for (size_t j = 0; j < m_staticObj[i].size(); j++) 
-			for (size_t k = 0; k < m_movingObj.size(); k++) {
+			for (size_t k = 0; k < m_movingObj.size(); k++) 
 				if (isColiistion(*m_movingObj[k], *m_staticObj[i][j]))
 					m_collisionHandling.processCollision(*m_movingObj[k], *m_staticObj[i][j]);
-			}
 
-		
-		//	if (isColiistion(*m_player, *m_staticObj[i][j]))
-		//			m_collisionHandling.processCollision(*m_player, *m_staticObj[i][j]);
+	for (size_t j = 0; j < m_movingObj.size(); j++)
+		for (size_t k = 0; k < m_movingObj.size(); k++) 
+			if (j != k && isColiistion(*m_movingObj[k], *m_movingObj[j]))
+				m_collisionHandling.processCollision(*m_movingObj[k], *m_movingObj[j]);
 
-	checkDisposedObject();
 	checkWheterMakeDFS();
+	checkDisposedObject();
 	
 }
 //--------------getTime--------------------
@@ -45,7 +45,7 @@ int Map::getTime() const {
 unsigned Map::getGlobletCollected() const {
 
 	Player* player = getPointerToPlayer();
-	return player->getGobelt();
+	return player->getCoins();
 }
 Player * Map::getPointerToPlayer() const {
 
@@ -56,10 +56,12 @@ Player * Map::getPointerToPlayer() const {
 }
 //------------checkWheterMakeDFS-----------
 void Map::checkWheterMakeDFS() {
-
-	auto player = getPointerToPlayer();
-	if (player->getGobelt() == MAXIMUM_GOBLET && !m_DFS)
+	
+	
+	if (getPointerToPlayer()->getCoins() == MAXIMUM_COINS && !m_DFS) {
+		addEdgesForGraph();
 		paintTheTrackViaDFS();
+	}
 }
 //------------checkDisposedObject-----------
 void Map::checkDisposedObject() {
@@ -68,12 +70,17 @@ void Map::checkDisposedObject() {
 		for (size_t j = 0; j < m_staticObj[i].size(); j++)
 			if (m_staticObj[i][j]->isDisposed()) {
 
-				if (m_staticObj[i][j]->getSprite().getTexture() ==
-					GameTexture::instance().getTexture(DOOR))
+				if (m_staticObj[i][j]->getSprite().getTexture() == GameTexture::instance().getTexture(DOOR)) {
 					readMapFromFile(true);
+					return;
+				}
 
 				m_staticObj[i].erase(m_staticObj[i].begin() + j);
 			}
+
+
+	if (getPointerToPlayer()->isDisposed())
+		readMapFromFile(false);
 }
 
 //---------------clearVectors----------------
@@ -132,9 +139,13 @@ void Map::readMapFromFile(const bool nextLevel) {
 
 	m_gameOver = false;
 	//clears all the objects
+	
 	m_movingObj.clear();
 	m_staticObj.clear();
 	m_staticObj.resize(HEIGHT_OF_MAP);
+
+	if (!nextLevel) 
+		m_file.seekg(-((HEIGHT_OF_MAP ) * (WIDTH_OF_MAP + 2)), std::ios::cur);
 
 	//reads map
 	for (int row = 0; row < HEIGHT_OF_MAP; row++)
@@ -146,25 +157,24 @@ void Map::readMapFromFile(const bool nextLevel) {
 		for (int col = 0; col < WIDTH_OF_MAP; col++)
 		{
 			charachter = m_file.get();
-			if (charachter == GAME_OVER) {
+			if (charachter == GAME_OVER_SING) {
 				m_gameOver = true;
 				return;
 			}
 
 			//calculates the location of object
-			auto location = sf::Vector2f(col * (WALL_SIZE)+10 + WALL_SIZE * 2, row * (WALL_SIZE + 1) + 160);
+			auto location = sf::Vector2f(col * (WALL_SIZE)+10 + WALL_SIZE, row * (WALL_SIZE + 1) + 160);
 			createObject(charachter, location,row);
 		}
 	}
 	char charachter = m_file.get();
 	m_gameTime.startTime();
-	addEdgesForGraph();
 }
 //--------------addEdgesForGraph---------------
 void Map::addEdgesForGraph() {
 
 	for (size_t row = 0; row < m_staticObj.size(); row++) {
-		for (size_t col = 40; col < m_staticObj[row].size(); col++)
+		for (size_t col = 0; col < m_staticObj[row].size(); col++)
 			if (typeid(*m_staticObj[row][col]) != typeid(Wall))
 				checkNeighborsAndInsert(row, col);
 	}
@@ -177,7 +187,7 @@ void Map::getPositionOfSourceAndTarget(int & source,int & target) {
 	for (int row = 0; row < m_staticObj.size() ; row++)
 		for (int col = 0; col < m_staticObj[row].size(); col++) {
 
-			if (isColiistion(*player, *m_staticObj[row][col]) && typeid(*m_staticObj[row][col]) != typeid(Wall))
+			if (isColiistion(*player, *m_staticObj[row][col]) && typeid(*m_staticObj[row][col]) == typeid(Empty))
 				source = row * WIDTH_OF_MAP + col;
 			if (typeid(*m_staticObj[row][col]) == typeid(Door))
 				target = row * WIDTH_OF_MAP + col;

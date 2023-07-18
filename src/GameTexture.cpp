@@ -5,7 +5,8 @@
 GameTexture::GameTexture()
 {
 	
-
+	m_transitionScreens[GAME_OVER_SCREEN].loadFromFile("GameOver.jpg");
+	m_transitionScreens[TIME_IS_OUT_SCREEN].loadFromFile("TimeIsOver.jpg");
 	m_background[INFO_BACKGROUND].loadFromFile("Information.png");
 	m_background[MENU_BACKGROUND].loadFromFile("MenuBackground.png");
 	m_objectTexture[PLAYER].loadFromFile("Player.png");
