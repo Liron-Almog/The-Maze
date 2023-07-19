@@ -1,9 +1,10 @@
 #include "TimeInformationBar.h"
 #include <iostream>
+
+//==========Constructor=========
 TimeInformationBar::TimeInformationBar(InformationGame * informationGame) : DataBar(informationGame)
 {
-
-
+	//Defult setting
 	for (int i = 0; i < TEXT_AND_DATA; i++) {
 		m_currentTimeAndTitle[i].setCharacterSize(40);
 		m_currentTimeAndTitle[i].setColor(sf::Color::White);
@@ -22,11 +23,12 @@ TimeInformationBar::TimeInformationBar(InformationGame * informationGame) : Data
 	m_clockSprite.setTexture(*GameTexture::instance().getTexture(CLOCK));
 	m_clockSprite.setPosition(272, 765);
 }
-
+//==========update========
 void TimeInformationBar::update(){  
 
 	m_currentTimeAndTitle[DATA].setString(to_string(m_informationGame->getTime()));
 }
+//==========draw========
 void TimeInformationBar::draw(sf::RenderWindow& window)  {
 
 	for (int i = 0; i < TEXT_AND_DATA; i++)

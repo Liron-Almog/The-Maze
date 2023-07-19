@@ -1,11 +1,12 @@
 #include "Controller.h"
 
+//========================run========================
 void Controller::run(sf::RenderWindow & window) {
 
     handleEvents(window);
     
 }
-//-------------------drawGame---------------------------
+//========================drawGame========================
 void Controller::drawGame(sf::RenderWindow& window) {
 
     window.clear(sf::Color(250, 235, 215));
@@ -14,7 +15,7 @@ void Controller::drawGame(sf::RenderWindow& window) {
     window.display();
 
 }
-//-------------------handleEvents-----------------------
+//================handleEvents=================
 void Controller::handleEvents(sf::RenderWindow& window) {
 
 
@@ -26,7 +27,7 @@ void Controller::handleEvents(sf::RenderWindow& window) {
 
     while (window.isOpen() && !m_map.isGameOver())//In game
     {
-        elapedTime = clock.restart().asSeconds();
+        elapedTime = clock.restart().asSeconds();//saves the time that passed
 
         m_map.setPlayerDirection(getDirection());
         m_map.moveObj(elapedTime);
@@ -38,6 +39,8 @@ void Controller::handleEvents(sf::RenderWindow& window) {
     
     }
 }
+//The function checks the game status 
+//==============checkStatusGame=============
 void Controller::checkStatusGame(sf::RenderWindow& window) {
 
     if (m_map.isGameOver() ) {
@@ -47,9 +50,8 @@ void Controller::checkStatusGame(sf::RenderWindow& window) {
         drawAndSleep(window, m_spriteTimeIsOver);
         m_map.readMapFromFile(false);
     }
-  
 }
-
+//==============drawAndSleep=====================
 void Controller::drawAndSleep(sf::RenderWindow& window,const sf::Sprite & sprite) {
 
     window.clear();
@@ -58,7 +60,7 @@ void Controller::drawAndSleep(sf::RenderWindow& window,const sf::Sprite & sprite
     std::this_thread::sleep_for(std::chrono::seconds(3));
 }
 //The function returns the direction that chose by user 
-//---------------getDirection----------------------
+//==============getDirection=====================
 sf::Vector2f Controller::getDirection(){
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -75,22 +77,19 @@ sf::Vector2f Controller::getDirection(){
 
     return STAND;
 }
-
+//================Constructor==========================
 Controller::Controller()
 {
-
     m_title.setFont(GameFont::instance().getFont(SHARPSHOTER_FONT));
     m_title.setString("The Maze");
     m_title.setCharacterSize(90);
     m_title.setStyle(sf::Text::Bold);
     m_title.setColor(sf::Color::White);
     m_title.setPosition(sf::Vector2f(370,35));
+
+    //loading transiction screens
     m_spriteTimeIsOver.setTexture(*GameTexture::instance().getTransitionScreen(TIME_IS_OUT_SCREEN));
     m_spriteGameIsOver.setTexture(*GameTexture::instance().getTransitionScreen(GAME_OVER_SCREEN));
     
-}
-
-Controller::~Controller()
-{
 }
 

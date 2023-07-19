@@ -7,13 +7,18 @@ class Player : public MovingObject
 {
 public:
 
+	//==========Constructor===========
 	Player();
-	~Player();
+	//=========Destructor============
+	~Player() = default;
+
+	//==========Virtual functions=============
+	virtual void draw(sf::RenderWindow& window) override;
+
+	//==========Getter functions===========	
 	unsigned getCoins() const;
-	void moveStepBack();
+
 	void move(const float& deltaTime);
-	void updateAnimation(const float&){}//ignore
-    virtual void draw(sf::RenderWindow& window) override;
 	void incCoin();
 
 private:

@@ -1,6 +1,7 @@
 #include "InformationBar.h"
 #include <iostream>
 
+//===========draw==============
 void InformationBar::draw(sf::RenderWindow& window) {
 
 
@@ -10,6 +11,7 @@ void InformationBar::draw(sf::RenderWindow& window) {
 	}
 
 }
+//===========InformationBar==============
 InformationBar::InformationBar(InformationGame * m_informationGame)
 {
 

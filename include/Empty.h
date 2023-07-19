@@ -8,7 +8,11 @@
 class Empty : public StaticObject
 {
 public:
+
+	//===============Constructor===========
 	Empty();
+
+	//===========Destructor============
 	~Empty() = default;
 
 private:

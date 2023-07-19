@@ -19,16 +19,17 @@ void doorPlayer(GameObject& gameObject1, GameObject& gameObject2)
 
 }
 //===================playerGoblet===================
-void playerGoblet(GameObject& gameObject1, GameObject& gameObject2)
+void playerCoin(GameObject& gameObject1, GameObject& gameObject2)
 {
 
-    Coin& goblet = static_cast<Coin&>(gameObject2);
+    Coin& coin = static_cast<Coin&>(gameObject2);
     Player& player = static_cast<Player&>(gameObject1);
 
-    goblet.setDisposed();
-    player.incCoin();
+  
+    if (coin.getSprite().getTexture() == GameTexture::instance().getTexture(COIN))
+        player.incCoin();
     
-
+    coin.setTexture(EMPTY);
 }
 //===================wallPlayer===================
 void wallPlayer(GameObject& gameObject1, GameObject& gameObject2) 
@@ -43,7 +44,7 @@ void enemyWall(GameObject& gameObject1, GameObject& gameObject2)
 {
 
     Enemy& enemy = static_cast<Enemy&>(gameObject1);
-    enemy.moveBack();
+    enemy.moveStepBack();
     enemy.changeDirection();
 
 }
@@ -72,7 +73,7 @@ CollisionHandling::CollisionHandling()
     m_collisionMap[Key(typeid(Enemy), typeid(Door))] = &enemyWall;
     m_collisionMap[Key(typeid(Player), typeid(Wall))] = &wallPlayer;
     m_collisionMap[Key(typeid(Player), typeid(Door))] = &doorPlayer;
-    m_collisionMap[Key(typeid(Player), typeid(Coin))] = &playerGoblet;
+    m_collisionMap[Key(typeid(Player), typeid(Coin))] = &playerCoin;
    
 
 }

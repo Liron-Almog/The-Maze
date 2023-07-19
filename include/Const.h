@@ -31,6 +31,7 @@ const int FPS = 60
 	, GAME_TIME = 100
 	, TIME_OF_LOGIN_ANI = 4
 	, MAXIMUM_COINS = 4
+	, DIRECTIONS = 4
 	,GAME_OVER = 0
 		, NO_OPTION = -1;
 
@@ -56,10 +57,17 @@ enum font_t{
 };
 
 enum backGroumd_t {
+	GAME_BACKGROUND,
 	MENU_BACKGROUND,
 	INFO_BACKGROUND,
 	NUMBER_OF_BACKGROUND
 };
+enum music_t {
+	GAME_MUSIC,
+	MENU_MUSIC,
+	MUSIC
+};
+
 
 enum transitionScreens_t {
 	START_SCREEN,

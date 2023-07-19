@@ -2,7 +2,7 @@
 //------------UpdateStatusGame--------------
 void Map::UpdateStatusGame() {
 
-	m_informationGame.setGobletCollected(this->getGlobletCollected());
+	m_informationGame.setCoinCollected(this->getCoinCollected());
 	m_informationGame.setTime(m_gameTime.getTime());
 }
 //------------movePlayer--------------------
@@ -42,7 +42,7 @@ int Map::getTime() const {
 	return m_gameTime.getTime();
 }
 //--------------getTime--------------------
-unsigned Map::getGlobletCollected() const {
+unsigned Map::getCoinCollected() const {
 
 	Player* player = getPointerToPlayer();
 	return player->getCoins();
@@ -128,7 +128,7 @@ void Map::drawMap(sf::RenderWindow& window) {
 //---------------constructor------------------
 Map::Map()
 {
-	m_background.setTexture(*GameTexture::instance().getBackgroundGame());
+	m_background.setTexture(*GameTexture::instance().getBackground(GAME_BACKGROUND));
 	openFileMap();
 	readMapFromFile(true);
 	UpdateStatusGame();
@@ -245,7 +245,7 @@ void Map::createObject(char charachter, sf::Vector2f location,const int & row)
 		m_staticObj[row].emplace_back(Factory<StaticObject>::create(charachter));
 		m_staticObj[row][m_staticObj[row].size()-1]->setTilePosition(location);
 	}
-	if (charachter != 'w') {
+	if (charachter == ' ' || isupper(charachter)) {
 		m_staticObj[row].emplace_back(Factory<StaticObject>::create(' '));
 		m_staticObj[row][m_staticObj[row].size() - 1]->setTilePosition(location);
 	}

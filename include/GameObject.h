@@ -1,21 +1,29 @@
 #pragma once
 #include "Const.h"
-
+#include "GameTexture.h"
 class GameObject 
 {
 public:
 
+	//==============Constructor============
+	GameObject() = default;
 
-	GameObject();
+	//=================Virtual methods==================
 	virtual ~GameObject() = default;
     virtual void draw(sf::RenderWindow& window);
-	virtual void updateAnimation(const float &) {};
+
+	//================Getter method==============
+	const sf::Sprite& getSprite() const;
+
+	//===============Setter methods===============
 	void setDisposed() ;
 	void setTilePosition(const sf::Vector2f pos);
-	bool isDisposed() const;
 	void setColor(const sf::Color color);
-	const sf::Sprite& getSprite() const;
+	void setTexture(const playersAndAnimation_t& type);
+
+	bool isDisposed() const;
 	void moveSprite(const sf::Vector2f&);
+
 protected:
 
 	bool m_isDisposed = false;

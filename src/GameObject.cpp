@@ -1,36 +1,42 @@
 #include "GameObject.h"
 
-GameObject::GameObject()
-{
-
-}
+//============moveSprite============
 void GameObject::moveSprite(const sf::Vector2f& dir) {
 	m_sprite.move(dir);
 }
-//---------------draw----------------
+//============draw============
 void GameObject::draw(sf::RenderWindow& window) {
 
 	window.draw(m_sprite);
 }
-//-----------setPlayerPosition------------
+//============setTilePosition============
 void GameObject::setTilePosition(const sf::Vector2f pos) {
 	m_sprite.setPosition(pos.x, pos.y);
 }
-//---------------isDisposed--------------
+
+//============isDisposed============
 bool GameObject::isDisposed() const
 {
 	return m_isDisposed;
 }
+
+//============setColor============
 void GameObject::setColor(const sf::Color color){
 
 	m_sprite.setColor(color);
 }
-//---------------isDisposed--------------
+
+//============setDisposed============
 void GameObject::setDisposed()
 {
 	m_isDisposed = true;
 }
-//------------getSprite------------
+
+//============getSprite============
 const sf::Sprite& GameObject::getSprite() const {
 	return m_sprite;
+}
+//============getSprite============
+void GameObject::setTexture(const playersAndAnimation_t & type) {
+	m_sprite.setTexture(*GameTexture::instance().getTexture(type));
 }

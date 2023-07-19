@@ -30,8 +30,3 @@ void Enemy::move(const float& timepassed)
     m_moveBehavior->moveObject(*this);
   
 }
-void Enemy::moveBack()
-//==========moveBack=============
-{
-	m_sprite.move(-sf::Vector2(m_direction.x* m_speed, m_direction.y * m_speed));
-}

@@ -7,8 +7,13 @@
 class InformationBar
 {
 public:
+
+	//========Constructor==========
 	InformationBar(InformationGame*);
+
+	//========Destructor==========
 	~InformationBar() = default;
+
 	void draw(sf::RenderWindow& window);
 private:
 

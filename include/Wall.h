@@ -6,9 +6,12 @@
 class Wall : public StaticObject
 {
 public:
+
+	//=========Constructor============
 	Wall();
+
+	//=========Desstructor============
 	~Wall() = default;
-	void updateAnimation(const float&){}//ignore
 
 private:
 

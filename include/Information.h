@@ -3,8 +3,12 @@
 class Information : public Command
 {
 public:
-	virtual bool execute(sf::RenderWindow& window);
+
+	//========Constructor==========
 	Information() = default;
+
+	//========Virual functions==========
+	virtual bool execute(sf::RenderWindow& window) override;
 	virtual ~Information() =default;
 private:
 };

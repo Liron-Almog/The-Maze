@@ -21,10 +21,23 @@
 class Map
 {
 public:
-	void createObject(char charachter, sf::Vector2f location, const int& row);
-	void setPlayerDirection(const sf::Vector2f &);
+
+	//===========Getter functions=================
 	int getTime() const;
-	unsigned getGlobletCollected() const;
+	void getPositionOfSourceAndTarget(int& source, int& target);
+
+	//===========Setter functions=================
+	void setPlayerDirection(const sf::Vector2f &);
+
+	//=============Constructor================
+	Map();
+
+	//=============Destructor================
+	~Map() = default;
+
+
+	void createObject(char charachter, sf::Vector2f location, const int& row);
+	unsigned getCoinCollected() const;
 	void checkWheterMakeDFS();
 	bool isTimeOver();
 	bool isGameOver() const;
@@ -34,17 +47,15 @@ public:
 	void clearVectors();
 	void checksCollistion();
 	bool isColiistion(const GameObject& ob1, const GameObject& ob2);
-	Map();
 	void UpdateStatusGame();
-	~Map() = default;
 	void drawMap(sf::RenderWindow& window);
 	void moveObj(const float& deltaTime);	
 	void checkNeighborsAndInsert(const int& row, const int& col);
-	void getPositionOfSourceAndTarget(int & source, int & target);
 	void readMapFromFile(const bool);
+
 private:
 
-	Player * getPointerToPlayer() const;
+	Player *getPointerToPlayer() const;
 
 	void paintTheTrack(const vector<int>& track);
 	void openFileMap();

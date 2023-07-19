@@ -10,7 +10,7 @@ public:
 	Controller();
 
 	//==============Destractor============
-	~Controller();
+	~Controller() = default;
 
 	//==============Getter functions============
 	sf::Vector2f getDirection();

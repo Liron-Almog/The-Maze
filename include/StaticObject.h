@@ -4,9 +4,11 @@ class StaticObject : public GameObject
 {
 public:
 
+	//=========Constructor============
 	StaticObject() = default;
+
+	//=========Desstructor============
 	~StaticObject() = default;
-	void updateAnimation(const float& a) {};
 
 private:
 

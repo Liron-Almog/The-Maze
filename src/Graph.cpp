@@ -3,28 +3,31 @@
 #include "Graph.h"
 #include <utility>
 #include <iostream>
-//-----------------costructor---------------
+
+//===========costructor=============
 Graph::Graph(int v)
 {
     m_v = v;
     m_adj.resize(v);
     m_visited.resize(v, false);
 }
-//-----------------clearEdge---------------
+//===========clearEdge=============
 void Graph::clearEdge() {
 
+    m_dadAndSon.clear();
     m_adj.clear();
     m_adj.resize(m_v);
     m_visited.clear();
     m_visited.resize(m_v, false);
 }
-//-----------------addEdge---------------
+//===========addEdge=============
 void Graph::addEdge(int v, int w){
 
     m_adj[v].push_back(w); // Add w to v’s list.
 }
+
 //The function executes the DFS algorithm
-//---------------BFS------------------
+//===========DFS=============
 void Graph::DFS(int currentNode, const int& target,bool & found){
 
     m_visited[currentNode] = true;// Marks the current node as visited
@@ -38,7 +41,8 @@ void Graph::DFS(int currentNode, const int& target,bool & found){
         }
     }
 }
-//---------------getTrack------------------
+//The function returns the track by pass on the tree that the algorithm creates
+//===========getTrack=============
 vector<int> Graph::getTrack() {
     
     vector<int> track;

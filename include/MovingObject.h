@@ -6,17 +6,23 @@ class MovingObject :public GameObject
 {
 public:
 
+	//=======Constructor==============
 	 MovingObject() = default;
+
+	 //=======Destructor==============
+
+	 //=======Getter functions==============
 	float getSpeed();
 	sf::Vector2f getDirection() const;
-	void setDirection(const sf::Vector2f);
-	virtual ~MovingObject () = default;
-	virtual void updateAnimation(const float& s){};
-	void virtual move(const float& time) {
-		m_direction = sf::Vector2f(time * m_direction.x, time * m_direction.y);
-		m_moveBehavior->moveObject(*this);
-	}
 
+	//==========Setter functions
+	void setDirection(const sf::Vector2f);
+
+	//========Virtual functions===========
+	virtual ~MovingObject () = default;
+	void virtual move(const float& time);
+
+	void moveStepBack();
 
 protected:
 

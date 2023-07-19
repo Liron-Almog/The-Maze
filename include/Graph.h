@@ -4,8 +4,13 @@
 class Graph
 {
 public:
-    Graph(int);// Constructor
+
+    //=======Constructor==============
+    Graph(int);
+
+    //=======Destructor==============
 	~Graph() = default;
+
     void addEdge(int v, int w);
     void clearEdge();
     void DFS(int currentNode, const int& target,bool & found);

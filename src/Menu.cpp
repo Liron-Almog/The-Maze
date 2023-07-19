@@ -5,17 +5,16 @@
 #include "Information.h"
 #include "Quit.h"
 #include "Start.h"
-//#include "GameSound.h"
 
 //The function adds button to the menu
-//-------------add-------------------
+//=============add================
 void Menu::add(string name, unique_ptr<Command> button, sf::Vector2i pos) {
 
 	m_options.emplace_back(option(name, move(button)));
 	m_options[m_options.size() - 1].second->setText(name,pos);
 }
 
-//------------draw-----------------
+//===========draw=============
 void Menu::draw(sf::RenderWindow &window)const {
 
 	window.clear();
@@ -24,7 +23,7 @@ void Menu::draw(sf::RenderWindow &window)const {
 	drawOption(window);
 	window.display();
 }
-//---------drawOption----------------
+//=========drawOption=========
 void Menu::drawOption(sf::RenderWindow&  window) const {
 
 	for (size_t i = 0; i < m_options.size(); i++)
@@ -34,7 +33,7 @@ void Menu::drawOption(sf::RenderWindow&  window) const {
 //Boolean function that returns true if after the operation 
 // we want to exit the current menu,
 //else continues to display the current menu
-//----------performAction---------------
+//=========performAction=========
 bool Menu::performAction(const int & option , sf::RenderWindow& window) const{
 
 	bool temp;
@@ -47,7 +46,7 @@ bool Menu::performAction(const int & option , sf::RenderWindow& window) const{
 	}
 	return true;
 }
-//----------------costructor-----------------
+//=========Consructor=========
 Menu::Menu(const sf::Texture & BackGround, const string title,const sf::Color color) {
 	
 	m_title.setFont(GameFont::instance().getFont(SHARPSHOTER_FONT));
@@ -61,7 +60,7 @@ Menu::Menu(const sf::Texture & BackGround, const string title,const sf::Color co
 }
 //The function checks if user pressed on button from menu
 //and then returns the number of button else returns - 1
-//----------------costructor-----------------
+//=========optionFromUser=========
 int Menu::optionFromUser(sf::Event event, sf::RenderWindow& window) const {
 
 	//checks if user choose an option
@@ -74,7 +73,7 @@ int Menu::optionFromUser(sf::Event event, sf::RenderWindow& window) const {
 }
 //The function listens to pressed of user and 
 // doing the wanted operation
-//-----------------activate-----------------------
+//==========activate==============
 void Menu::activate(sf::RenderWindow& window) {
 
 	sf::Event event;
@@ -102,7 +101,7 @@ void Menu::activate(sf::RenderWindow& window) {
 }
 //The function chckes if the mouse stands on  one of buutons,
 // then replaces the arrow cursor to hand ,else replaces to arrow. 
-//----------changeCursorIfOnButton-----------
+//==========changeCursorIfOnButton==============
 void Menu::changeCursorIfOnButton(const sf::Vector2i pos, sf::RenderWindow& window) const{
 
 	sf::Cursor arrow;

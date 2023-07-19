@@ -1,7 +1,8 @@
 #include "Quit.h"
 #include "GameTexture.h"
+
 //The virtual function executes the quit button in the menu 
-//----------execute-------------
+//==============execute===============
 bool Quit::execute(sf::RenderWindow& window) {
 
 	drawTransitionScreen(window);
@@ -11,7 +12,9 @@ bool Quit::execute(sf::RenderWindow& window) {
 
 	return false;//for compailer 
 }
-//----------Constructor-------------
+//==============costructor===============
 Quit::Quit() {
+
 	m_transitionScreen.setTexture(*GameTexture::instance().getTransitionScreen(QUIT_SCREEN));
+
 } 

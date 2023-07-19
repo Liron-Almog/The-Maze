@@ -3,16 +3,22 @@ class InformationGame
 {
 public:
 
-	InformationGame() =default;
+	//========Constructor==========
+	InformationGame() = default;
+
+	//========Destructor==========
 	~InformationGame() = default;
 
-	void setGobletCollected(const unsigned&);
+	//=========Setter function============
+	void setCoinCollected(const unsigned&);
 	void setTime(const int& currentTime);
 
+	//========Getter functions==========
 	int getTime() const;
 	unsigned getGobletCollected() const;
 
 private:
+
 	unsigned m_gobletCollected;
 	int m_currentTime;
 };

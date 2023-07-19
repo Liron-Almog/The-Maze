@@ -3,16 +3,19 @@
 #include "GameTexture.h"
 #include "Controller.h"
 #include "Const.h"
+#include "SingeltonSound.h"
 #include "Animation.h"
 class Start : public Command
 {
 
 public:
 	
-    void drawTransitionAndAnimation(sf::RenderWindow& window);
-	bool execute(sf::RenderWindow& window) ;
+	//=========Constructor============
 	Start();
+
+	//=========Virtual functions==============
 	virtual ~Start() = default;
+	bool execute(sf::RenderWindow& window) override;
 
 private:
 	

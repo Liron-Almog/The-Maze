@@ -4,12 +4,20 @@
 #include "GameTexture.h"
 #include "InformationGame.h"
 
-class TimeInformationBar : public DataBar{
+class TimeInformationBar : public DataBar
+{
 public:
+	//=========Constructor============
 	TimeInformationBar(InformationGame* informationGame);
+
+	//=========Desstructor============
 	~TimeInformationBar() = default;
+
+	//==============Virtual functions================
 	virtual void update() override;
 	virtual void draw(sf::RenderWindow& window) override;
+
+
 private:
 
 	sf::Sprite m_clockSprite;

@@ -4,12 +4,16 @@ class GameTime
 {
 public:
 
+	//==============Constructor============
 	GameTime() = default;
-	~GameTime() = default;
-	int getTime() const;
-	void startTime();
-	void updateTime();
 
+	//==============Destructor============
+	~GameTime() = default;
+
+	//=======Getter functions==============
+	int getTime() const;
+
+	void startTime();
 
 private:
 

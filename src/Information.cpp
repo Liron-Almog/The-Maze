@@ -6,7 +6,7 @@
 #include "Const.h"
 
 //The virtual function executes the information button
-//-----------------execute-----------------
+//=============execute============
  bool Information::execute(sf::RenderWindow& window) {
 
 	 Menu informationMenu(*GameTexture::instance().getBackground(INFO_BACKGROUND),"", sf::Color(197, 179, 88));

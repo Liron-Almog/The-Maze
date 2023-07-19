@@ -22,3 +22,6 @@ configure_file ("Font/TimeFont.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Font/Candy_Pop!-demo-font.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Font/Sharpshooter.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Font/BubbleboddyExtralight-z54X.ttf" ${CMAKE_BINARY_DIR} COPYONLY)
+
+configure_file ("Sounds/Music/menu.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Sounds/Music/game.wav" ${CMAKE_BINARY_DIR} COPYONLY)

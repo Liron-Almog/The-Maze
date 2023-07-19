@@ -3,9 +3,15 @@
 class Quit : public Command
 {
 public:
-	virtual bool execute(sf::RenderWindow&);
+
+
+	//=========Constructor============
 	Quit();
+
+	//=========Virtual functions==============
 	virtual ~Quit() = default;
+	bool execute(sf::RenderWindow& window) override;
+
 private:
 	
 };

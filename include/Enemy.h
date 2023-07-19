@@ -19,8 +19,6 @@ public:
 	//===========Destructor============
 	~Enemy () = default;
 
-	void moveBack();
-
 private:
 
 	Animation m_enemyAnimation = Animation(sf::Vector2i(3, 4), 0.25, *GameTexture::instance().getTexture(ENEMY));
