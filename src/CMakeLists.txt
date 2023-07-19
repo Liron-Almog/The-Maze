@@ -30,4 +30,4 @@
                                                 "Command.cpp"
                                                 "Coin.cpp"
                                                 "Empty.cpp"
-                                                "../include/MoveBehavior.h" "MoveBehavior.cpp" "../include/StriteMove.h" "StriteMove.cpp" "RandomMove.cpp" "../include/RandomMove.h" "Enemy.cpp" "../include/Enemy.h" "../include/SingeltonSound.h" "SingeltonSound.cpp")
+                                                "../include/MoveBehavior.h" "MoveBehavior.cpp" "../include/StriteMove.h" "StriteMove.cpp" "RandomMove.cpp" "../include/RandomMove.h" "Enemy.cpp" "../include/Enemy.h" "../include/SingeltonSound.h" "SingeltonSound.cpp" "../include/Lightning.h" "Lightning.cpp")

@@ -137,9 +137,10 @@ Map::Map()
 //--------------readMapFromFile----------
 void Map::readMapFromFile(const bool nextLevel) {
 
-	m_gameOver = false;
+	m_gameOver = m_DFS = false;
 	//clears all the objects
 	
+	m_graph.restart();
 	m_movingObj.clear();
 	m_staticObj.clear();
 	m_staticObj.resize(HEIGHT_OF_MAP);
@@ -187,7 +188,7 @@ void Map::getPositionOfSourceAndTarget(int & source,int & target) {
 	for (int row = 0; row < m_staticObj.size() ; row++)
 		for (int col = 0; col < m_staticObj[row].size(); col++) {
 
-			if (isColiistion(*player, *m_staticObj[row][col]) && typeid(*m_staticObj[row][col]) == typeid(Empty))
+			if (isColiistion(*player, *m_staticObj[row][col]) && typeid(*m_staticObj[row][col]) != typeid(Wall))
 				source = row * WIDTH_OF_MAP + col;
 			if (typeid(*m_staticObj[row][col]) == typeid(Door))
 				target = row * WIDTH_OF_MAP + col;

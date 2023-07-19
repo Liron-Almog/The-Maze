@@ -16,6 +16,7 @@ public:
 	const sf::Sprite& getSprite() const;
 
 	//===============Setter methods===============
+	void setSpriteScale(const double& x, const double& y);
 	void setDisposed() ;
 	void setTilePosition(const sf::Vector2f pos);
 	void setColor(const sf::Color color);

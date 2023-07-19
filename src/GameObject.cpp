@@ -40,3 +40,7 @@ const sf::Sprite& GameObject::getSprite() const {
 void GameObject::setTexture(const playersAndAnimation_t & type) {
 	m_sprite.setTexture(*GameTexture::instance().getTexture(type));
 }
+
+void GameObject::setSpriteScale(const double & x, const double& y) {
+	m_sprite.setScale(x, y);
+}

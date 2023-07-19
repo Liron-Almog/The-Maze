@@ -11,8 +11,11 @@ Coin::Coin()
 //==============draw===================
 void Coin::draw(sf::RenderWindow& window)  {
 
-	m_coinAnimation.updateAnimation(0, 0.06);//calculates the right animation
-	m_sprite.setTextureRect(*m_coinAnimation.get_uvRect());
+	if (getSprite().getTexture() == GameTexture::instance().getTexture(COIN)){
+		m_coinAnimation.updateAnimation(0, 0.06);//calculates the right animation
+		m_sprite.setTextureRect(*m_coinAnimation.get_uvRect());
+	}
+
 	window.draw(m_sprite);
 
 }

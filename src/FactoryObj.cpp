@@ -5,9 +5,13 @@
 #include "Player.h"
 #include "Coin.h"
 #include "Empty.h"
+#include "Lightning.h"
 #include "Enemy.h"
 FactoryObj::FactoryObj() {
 
+
+Factory<StaticObject>::registerit('l',
+	[]() -> unique_ptr<StaticObject> { return std::make_unique<Lightning>(); });
 
 Factory<StaticObject>::registerit('w',
 	[]() -> unique_ptr<StaticObject> { return std::make_unique<Wall>(); });

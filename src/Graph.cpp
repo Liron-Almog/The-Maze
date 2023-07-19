@@ -12,7 +12,7 @@ Graph::Graph(int v)
     m_visited.resize(v, false);
 }
 //===========clearEdge=============
-void Graph::clearEdge() {
+void Graph::restart() {
 
     m_dadAndSon.clear();
     m_adj.clear();

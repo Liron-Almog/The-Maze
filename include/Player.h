@@ -18,6 +18,8 @@ public:
 	//==========Getter functions===========	
 	unsigned getCoins() const;
 
+	//==========Setter function=====
+	void setSpeed(const float&);
 	void move(const float& deltaTime);
 	void incCoin();
 

@@ -12,7 +12,7 @@ public:
 	~Graph() = default;
 
     void addEdge(int v, int w);
-    void clearEdge();
+    void restart();
     void DFS(int currentNode, const int& target,bool & found);
     vector<int> getTrack();
 

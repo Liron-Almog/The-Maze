@@ -27,6 +27,9 @@ unsigned Player::getCoins() const {
 	return m_coin;
 }
 
+void Player::setSpeed(const float& speed) {
+	m_speed = speed;
+}
 //==========move===========
 void Player::move(const float& elapsedTime) {
 

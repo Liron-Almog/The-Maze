@@ -5,7 +5,7 @@
 #include "Door.h"
 #include "Enemy.h"
 #include "Coin.h"
-
+#include "Lightning.h"
 //===================doorPlayer===================
 void doorPlayer(GameObject& gameObject1, GameObject& gameObject2)
 {
@@ -26,10 +26,13 @@ void playerCoin(GameObject& gameObject1, GameObject& gameObject2)
     Player& player = static_cast<Player&>(gameObject1);
 
   
-    if (coin.getSprite().getTexture() == GameTexture::instance().getTexture(COIN))
+    if (coin.getSprite().getTexture() == GameTexture::instance().getTexture(COIN)) {
         player.incCoin();
+        coin.setTexture(EMPTY);
+        coin.setSpriteScale(1, 1);
+    }
     
-    coin.setTexture(EMPTY);
+ 
 }
 //===================wallPlayer===================
 void wallPlayer(GameObject& gameObject1, GameObject& gameObject2) 
@@ -57,6 +60,21 @@ void enemyPlayer(GameObject& gameObject1, GameObject& gameObject2)
  
 
 }
+//===================playerLightning===================
+void playerLightning(GameObject& gameObject1, GameObject& gameObject2)
+{
+
+    Player& player = static_cast<Player&>(gameObject1);
+    Lightning& lightning = static_cast<Lightning&>(gameObject2);
+
+
+    if (lightning.getSprite().getTexture() == GameTexture::instance().getTexture(LIGHTNING)) {
+
+        player.setSpeed(player.getSpeed() + 10);
+        lightning.setTexture(EMPTY);
+    }
+
+}
 //===================processCollision===================
 void CollisionHandling::processCollision(GameObject& object1, GameObject& object2) {
 
@@ -74,6 +92,7 @@ CollisionHandling::CollisionHandling()
     m_collisionMap[Key(typeid(Player), typeid(Wall))] = &wallPlayer;
     m_collisionMap[Key(typeid(Player), typeid(Door))] = &doorPlayer;
     m_collisionMap[Key(typeid(Player), typeid(Coin))] = &playerCoin;
+    m_collisionMap[Key(typeid(Player), typeid(Lightning))] = &playerLightning;
    
 
 }
