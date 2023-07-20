@@ -19,12 +19,12 @@ public:
 	unsigned getCoins() const;
 
 	//==========Setter function=====
-	void setSpeed(const float&);
+	void setExtraSpeed(const float&);
 	void move(const float& deltaTime);
 	void incCoin();
 
 private:
-
+	float m_extraSpeed = 0;
 	unsigned m_coin = 0;
 	Animation m_playerAnimation = Animation(sf::Vector2i(4, 4) , 0.25 ,*GameTexture::instance().getTexture(PLAYER));
 	sf::Sprite m_backgroundPlayer;

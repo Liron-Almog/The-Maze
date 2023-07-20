@@ -29,6 +29,7 @@ void playerCoin(GameObject& gameObject1, GameObject& gameObject2)
     if (coin.getSprite().getTexture() == GameTexture::instance().getTexture(COIN)) {
         player.incCoin();
         coin.setTexture(EMPTY);
+        coin.resetViewRect(COIN);
         coin.setSpriteScale(1, 1);
     }
     
@@ -69,8 +70,7 @@ void playerLightning(GameObject& gameObject1, GameObject& gameObject2)
 
 
     if (lightning.getSprite().getTexture() == GameTexture::instance().getTexture(LIGHTNING)) {
-
-        player.setSpeed(player.getSpeed() + 10);
+        player.setExtraSpeed(0.3);
         lightning.setTexture(EMPTY);
     }
 

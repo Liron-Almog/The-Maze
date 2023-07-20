@@ -44,3 +44,8 @@ void GameObject::setTexture(const playersAndAnimation_t & type) {
 void GameObject::setSpriteScale(const double & x, const double& y) {
 	m_sprite.setScale(x, y);
 }
+
+void GameObject::resetViewRect(const playersAndAnimation_t& type) {
+	m_sprite.setTextureRect(sf::IntRect(0, 0, GameTexture::instance().getTexture(type)->getSize().x, GameTexture::instance().getTexture(type)->getSize().y));
+
+}

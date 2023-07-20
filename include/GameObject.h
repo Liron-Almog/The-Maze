@@ -22,6 +22,7 @@ public:
 	void setColor(const sf::Color color);
 	void setTexture(const playersAndAnimation_t& type);
 
+	void resetViewRect(const playersAndAnimation_t& type);
 	bool isDisposed() const;
 	void moveSprite(const sf::Vector2f&);
 

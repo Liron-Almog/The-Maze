@@ -14,6 +14,7 @@ Player::Player()
 
 
 	m_backgroundPlayer.setTexture(*GameTexture::instance().getTexture(SQUARE_INSIDE_SQUARE));
+	m_backgroundPlayer.scale(1.2, 1.2);
 	m_backgroundPlayer.setOrigin(m_backgroundPlayer.getTexture()->getSize().x/2,
 							    m_backgroundPlayer.getTexture()->getSize().y / 2);
 }
@@ -27,8 +28,8 @@ unsigned Player::getCoins() const {
 	return m_coin;
 }
 
-void Player::setSpeed(const float& speed) {
-	m_speed = speed;
+void Player::setExtraSpeed(const float& speed) {
+	m_extraSpeed += speed;
 }
 //==========move===========
 void Player::move(const float& elapsedTime) {
@@ -37,7 +38,7 @@ void Player::move(const float& elapsedTime) {
 	
 		m_playerAnimation.updateAnimation(m_playerAnimation.getRowByDirection(m_direction), elapsedTime);//calculates the right animation
 		m_sprite.setTextureRect(*m_playerAnimation.get_uvRect());
-		m_speed = PLAYER_SPEED * elapsedTime; // calcuates the speed
+		m_speed = PLAYER_SPEED * elapsedTime + m_extraSpeed; // calcuates the speed
 		m_moveBehavior->moveObject(*this);
 
 	}
@@ -47,5 +48,5 @@ void Player::draw(sf::RenderWindow& window) {
 	
 	m_backgroundPlayer.setPosition(m_sprite.getPosition().x + 50, m_sprite.getPosition().y+30);
 	window.draw(m_sprite);
-	//window.draw(m_backgroundPlayer); // draws the circle around the player
+	window.draw(m_backgroundPlayer); // draws the circle around the player
 }

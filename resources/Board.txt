@@ -1,27 +1,27 @@
 wwwwwwwwwwwwwwwwwwwwwwwww
-wP     l                w
-w www wwwww   wwwww  wwww
-d www  wwww   wwww    www
-wwwww gwwww   wwwww wwwww
-wwwwwwwwwww   wwww g wwww
-wwwwwwwwwww   wwwwwwwwwww
-wwwwwwwwwww g wwwwwwwwwww
-wwwwwwwwwww          wwww
-wwwwwwwwwww    wwwwwwwwww
-w   l        E          w
-w       E              gw
-wwwwwwwwwwwwwwwwwwwwwwwww
-wwwwwwwwwww wwwwwwwwwwwww
-w  g    wwwwwwwwwwwwwwwww
-w gwwwwgwwwwwwwwwwwwwwwww
-d Pwwwwgwwwwwwwwwwwwwwwww
+w   g   wwwwwwwwwwwwwwwww
+w wwwwwwwwwwwwwwwwwwwwwww
+dPwwwww     w  E        w
+w wwwww ww  wwwwwwwwwwwww
+w       ww  wwwwwwwwwwwww
+wwwwwwwwww  wwwwwwwwwwwww
+wwgggwwwww  wwwwwwwwwwwww
+wwwwwwwwww  wwwwwwwwwwwww
+w           wwwwwwwwwwwww
+w  wwwwwww g   w    w  gw
+w       gw   w    w     w
 wwwwwwwwwwwwwwwwwwwwwwwww
 wwwwwwwwwwwwwwwwwwwwwwwww
-wwwwwwwwwwwwwwwwwwwwwwwww
-wwwwwwwwwwwwwwwwwwwwwwwww
-wwwwwwwwwwwwwwwwwwwwwwwww
-wwwwwwwwwwwwwwwwwwwwwwwww
-w                       w
-w                       w
+w    wlwwww            gw
+w wwwwwwwwwwwwww wwwwwwww
+dPwgwwww  w             w
+w wgwwww  w  w  l  g    w
+w wgwwww     w          w
+w wwwwwwww  wwwwwwwwwwwww
+w wE     w  w   w       w
+wlw      w  w   w  wE   w
+w wwwwwwww         wg E w
+w wwwwwwww  w      w    w
+w       g   w   w       w
 wwwwwwwwwwwwwwwwwwwwwwwww
 0
