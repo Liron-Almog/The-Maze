@@ -22,7 +22,8 @@ and the player must complete the level before the time runs out. If the time run
 
 5. Factory Pattern:
    - Implemented to create game objects, such as coins, enemies, and power-ups.
-6. Strategy Pattern: - Used for object movement in the game.
+6. Strategy Pattern:
+   - Used for object movement in the game.
 
 ## How to Play
 
